@@ -10,4 +10,5 @@ action "Deploy to GitHub Pages" {
     FOLDER = "dist"
     BRANCH = "gh-pages"
   }
+  secrets = ["ACCESS_TOKEN"]
 }
