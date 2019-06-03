@@ -9,6 +9,7 @@ action "Deploy to GitHub Pages" {
     BUILD_SCRIPT = "npm install && npm run build:prod"
     FOLDER = "dist"
     BRANCH = "gh-pages"
+    BASE_BRANCH = "site"
   }
   secrets = ["ACCESS_TOKEN"]
 }
