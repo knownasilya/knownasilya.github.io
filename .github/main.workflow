@@ -6,7 +6,7 @@ workflow "Deploy" {
 action "Deploy to GitHub Pages" {
   uses = "JamesIves/github-pages-deploy-action@1.1.2"
   env = {
-    BUILD_SCRIPT = "npm install && npm run build"
+    BUILD_SCRIPT = "npm install && npm run build:prod"
     FOLDER = "dist"
     BRANCH = "gh-pages"
   }
