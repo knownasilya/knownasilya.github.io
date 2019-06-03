@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[empress-blog]]></title><description><![CDATA[empress-blog]]></description><link>https://knownasilya.github.io/rss.xml</link><generator>ember-casper-template</generator><lastBuildDate>Mon, 03 Jun 2019 16:29:05 GMT</lastBuildDate><atom:link href="https://knownasilya.github.io/rss.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[Advanced Markdown tips]]></title><description><![CDATA[<p>There are lots of powerful things you can do with the Markdown</p>
+<p>If you've gotten pretty comfortable with <a href="/the-editor/">all the basics</a> of writing in Markdown, then you may enjoy some more advanced tips about the types of things you can do!</p>
+<p>As with the last post, you'll want to be looking at the source <a href="https://github.com/empress/empress-blog/blob/master/blueprints/empress-blog/files/__base__/content/advanced-markdown.md">directly on github</a> or in your local editor as you read it so that you can see all the Markdown code we're using.</p>
+<h2 id="specialformatting">Special formatting</h2>
+<p>As well as bold and italics, you can also use some other special formatting in Markdown when the need arises, for example:</p>
+<ul>
+<li>*escaped characters*</li>
+</ul>
+<h2 id="writingcodeblocks">Writing code blocks</h2>
+<p>There are two types of code elements which can be inserted in Markdown, the first is inline, and the other is block. Inline code is formatted by wrapping any word or words in back-ticks, <code>like this</code>. Larger snippets of code can be displayed across multiple lines using triple back ticks:</p>
+<pre><code>.my-link {
+    text-decoration: underline;
+}
+</code></pre>
+<h2 id="fullbleedimages">Full bleed images</h2>
+<p>One neat trick which you can use in Markdown to distinguish between different types of images is to add a <code>#hash</code> value to the end of the source URL, and then target images containing the hash with special styling. For example:</p>
+<p><img src="https://casper.ghost.org/v1.0.0/images/walking.jpg#full" alt="walking" /></p>
+<p>which is styled with…</p>
+<pre><code>img[src$="#full"] {
+    max-width: 100vw;
+}
+</code></pre>
+<p>This creates full-bleed images in the Casper theme, which stretch beyond their usual boundaries right up to the edge of the window. Every theme handles these types of things slightly differently, but it's a great trick to play with if you want to have a variety of image sizes and styles.</p>
+<h2 id="referencelists">Reference lists</h2>
+<p><strong>The quick brown <a href="https://en.wikipedia.org/wiki/Fox" title="Wikipedia: Fox">fox</a>, jumped over the lazy <a href="https://en.wikipedia.org/wiki/Dog" title="Wikipedia: Dog">dog</a>.</strong></p>
+<p>Another way to insert links in markdown is using reference lists. You might want to use this style of linking to cite reference material in a Wikipedia-style. All of the links are listed at the end of the document, so you can maintain full separation between content and its source or reference.</p>
+<h2 id="fullhtml">Full HTML</h2>
+<p>Perhaps the best part of Markdown is that you're never limited to just Markdown. You can write HTML directly in the Ghost editor and it will just work as HTML usually does. No limits! Here's a standard YouTube embed code as an example:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Cniqsc9QfDo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>]]></description><link>https://knownasilya.github.io/advanced-markdown</link><guid isPermaLink="true">https://knownasilya.github.io/advanced-markdown</guid><pubDate>Tue, 12 Jun 2018 16:50:55 GMT</pubDate></item><item><title><![CDATA[Why Ember]]></title><description><![CDATA[<p><a href="https://emberjs.com/">Ember is a powerful Javascript Framework that is designed to maximise developer productivity</a>. Ember also has one of the best plugin experiences in the industry, which means you can get a whole lot of functionality with just a simple <code>npm install</code>. If you want to check out the power of <a href="https://emberobserver.com/">Ember's addon ecosystem</a> you can visit <a href="https://emberobserver.com/">Ember Observer</a> which is made by <a href="http://www.codeallday.com/">Code All Day</a>.</p>
+<p>The design of empress-blog is a direct result of the work done to upgrade the <a href="https://github.com/ember-learn/guides-app">Ember Guides into an Ember application</a>. This system is specifically designed to make it easy for you to get started and if you have followed the <a href="https://github.com/empress/empress-blog">instructions on the README</a> you will know exactly how easy it is. If you are familiar with Ember you are probably used to the Zero Config experience of setting up new applications and adding addons 🎉</p>]]></description><link>https://knownasilya.github.io/ember</link><guid isPermaLink="true">https://knownasilya.github.io/ember</guid><pubDate>Tue, 12 Jun 2018 16:50:59 GMT</pubDate></item><item><title><![CDATA[Managing Ghost users]]></title><description><![CDATA[<p>empress-blog does not, and will never have the concept of user roles!</p>
+<p>This is because it is entirely a static system. You can assign authors to posts and generate new ones using <code>ember generate author</code> but if you need full user permissions (outside of something like Github) and collaboration features I highly recommend that you sign up for a <a href="https://ghost.org/">hosted Ghost instance</a>.</p>
+<p>It's a good idea to fill out the metadata on authors, including bio and social links. These will populate rich structured data for posts and generally create more opportunities for themes to fully populate their design.</p>]]></description><link>https://knownasilya.github.io/managing-users</link><guid isPermaLink="true">https://knownasilya.github.io/managing-users</guid><pubDate>Tue, 12 Jun 2018 16:55:01 GMT</pubDate></item><item><title><![CDATA[Editing Posts with empress-blog]]></title><description><![CDATA[<p>empress-blog uses a language called <strong>Markdown</strong> to format text, and so does the original Ghost 🎉</p>
+<p>The main difference between the hosted Ghost platform and empress-blog is that we just use files on disk, so you can either edit your Markdown files directly or you can use a desktop Markdown editor. It keeps things simple but it can sometimes feel like you are writing on pro-mode 😎</p>
+<p>If you want to start a new post we recommend that you use the built in generator <code>ember generate post "The next big thing - empress-blog"</code>. This will create a file for you and setup the start of the metadata.</p>
+<p>For now, though, let's run you through some of the basics of editing Markdown. You can see this post <a href="https://github.com/empress/empress-blog/blob/master/blueprints/empress-blog/files/__base__/content/the-editor.md">directly on github</a> if you want to see all the Markdown we've used. (don't forget to click the <em>Raw</em> button to see the source).</p>
+<h2 id="formattingtext">Formatting text</h2>
+<p>The most common shortcuts are of course, <strong>bold</strong> text, <em>italic</em> text, and <a href="https://example.com">hyperlinks</a>. These generally make up the bulk of any document. You can also make headings using <code>#</code> at the start of the line (multiple <code>#</code> symbols for h2/h3/h4/etc)</p>
+<p>With just a couple of extra characters here and there, you're well on your way to creating a beautifully formatted story.</p>
+<h2 id="insertingimages">Inserting images</h2>
+<p>Images in Markdown look just the same as links, except they're prefixed with an exclamation mark, like this:</p>
+<p><code>![Image description](/path/to/image.jpg)</code></p>
+<p><img src="https://casper.ghost.org/v1.0.0/images/computer.jpg" alt="Computer" /></p>
+<p>If you want to add images to your empress-blog app you can just drop them in the <code>/public</code> folder, which you should see if you are running this locally!</p>
+<p><em><strong>Important Note:</strong> empress-blog does not currently have automatic image resizing, so it's always a good idea to make sure your images aren't gigantic files <strong>before</strong> adding them to your project.</em></p>
+<h2 id="makinglists">Making lists</h2>
+<p>Lists in HTML are a formatting nightmare, but in Markdown they become an absolute breeze with just a couple of characters and a bit of smart automation. For numbered lists, just write out the numbers. For bullet lists, just use <code>*</code> or <code>-</code> or <code>+</code>. Like this:</p>
+<ol>
+<li>Crack the eggs over a bowl</li>
+<li>Whisk them together</li>
+<li>Make an omelette</li>
+</ol>
+<p>or</p>
+<ul>
+<li>Remember to buy milk</li>
+<li>Feed the cat</li>
+<li>Come up with idea for next story</li>
+</ul>
+<h2 id="addingquotes">Adding quotes</h2>
+<p>When you want to pull out a particularly good excerpt in the middle of a piece, you can use <code>&gt;</code> at the beginning of a paragraph to turn it into a Blockquote. You might've seen this formatting before in email clients.</p>
+<blockquote>
+  <p>A well placed quote guides a reader through a story, helping them to understand the most important points being made</p>
+</blockquote>
+<p>All themes handles blockquotes slightly differently. Sometimes they'll look better kept shorter, while other times you can quote fairly hefty amounts of text and get away with it. Generally, the safest option is to use blockquotes sparingly.</p>
+<h2 id="dividingthingsup">Dividing things up</h2>
+<p>If you're writing a piece in parts and you just feel like you need to divide a couple of sections distinctly from each other, a horizontal rule might be just what you need. Dropping <code>---</code> on a new line will create a sleek divider, anywhere you want it.</p>
+<hr />
+<p>This should get you going with the vast majority of what you need to do in the editor, but if you're still curious about more advanced tips then check out the <a href="/advanced-markdown/">Advanced Markdown Guide</a> - or if you'd rather learn about how tags work, we've got a overview of <a href="/using-tags/">how to use tags</a>.</p>]]></description><link>https://knownasilya.github.io/the-editor</link><guid isPermaLink="true">https://knownasilya.github.io/the-editor</guid><pubDate>Tue, 12 Jun 2018 16:58:54 GMT</pubDate></item><item><title><![CDATA[Setting up your own Ghost theme]]></title><description><![CDATA[<p>empress-blog currently only supports 2 themes, the default <a href="https://github.com/empress/empress-blog-casper-template">Casper template</a> and the <a href="https://github.com/empress/empress-blog-attila-template">Attila template</a>. If you want to swap between templates it is as simple as installing a different npm dependency 🎉</p>
+<p>The <a href="https://github.com/empress/empress-blog/blob/master/README.md">empress-blog documentation</a> recommends that you use the default theme called Casper, which is designed to be a clean, readable publication layout and can be easily adapted for most purposes. The empress-blog-casper-template is a direct fork of Ghost's official Casper repository so it aims to be as close as possible to the original.</p>
+<p>If you are interested in writing your own theme for empress-blog you can get started using</p>
+<pre><code class="sh language-sh">npm init empress-blog-template &lt;template-name&gt;
+</code></pre>
+<p>and it will create a brand new template addon in the folder <code>empress-blog-template-name-template</code>! You can check out the documentation for <a href="https://github.com/empress/create-empress-blog-template#readme">create-empress-blog-template here</a>. As <a href="https://ghost.org/">Ghost</a> uses handlebars it is not too difficult to port an existing Ghost template to use Ember templates, so if you have any requests for an existing open source Ghost template please let us know 👍</p>
+<p>If you do end up writing an empress-blog template please let me know <a href="https://twitter.com/real_ate">on Twitter</a> so I can include your template in a list of existing templates.</p>]]></description><link>https://knownasilya.github.io/themes</link><guid isPermaLink="true">https://knownasilya.github.io/themes</guid><pubDate>Tue, 12 Jun 2018 16:49:21 GMT</pubDate></item><item><title><![CDATA[Organising your content with tags]]></title><description><![CDATA[<p>empress-blog has a single, powerful organisational taxonomy, called tags.</p>
+<p>It doesn't matter whether you want to call them categories, tags, boxes, or anything else. You can think of tags a lot like Gmail labels. By tagging posts with one or more keyword, you can organise articles into buckets of related content.</p>
+<h2 id="basictagging">Basic tagging</h2>
+<p>When you write a post, you can assign tags to help differentiate between categories of content. For example, you might tag some posts with <code>News</code> and other posts with <code>Cycling</code>, which would create two distinct categories of content listed on <code>/tag/news/</code> and <code>/tag/cycling/</code>, respectively.</p>
+<p>If you tag a post with both <code>News</code> <em>and</em> <code>Cycling</code> - then it appears in both sections.</p>
+<p>Tag archives are like dedicated home-pages for each category of content that you have. They have their own pages and <a href="https://github.com/empress/empress-blog/issues/1">hopefully soon</a> will support their own cover images and meta data.</p>
+<h2 id="theprimarytag">The primary tag</h2>
+<p>At the top of every post there is a tiny bit of YAML, and the tags key is an <a href="http://yaml.org/spec/1.0/#type-seq">array</a> of tags. The first tag in the list is always given the most importance, and some themes will only display the primary tag (the first tag in the list) by default. So you can add the most important tag which you want to show up in your theme, but also add a bunch of related tags which are less important.</p>
+<pre><code class="yaml language-yaml">tags:
+  - news
+  - cycling
+  - bart-stevens
+  - extreme-sports
+</code></pre>
+<p>In this example, <strong>News</strong> is the primary tag which will be displayed by the theme, but the post will also still receive all the other tags, and show up in their respective archives.</p>]]></description><link>https://knownasilya.github.io/using-tags</link><guid isPermaLink="true">https://knownasilya.github.io/using-tags</guid><pubDate>Tue, 12 Jun 2018 16:57:10 GMT</pubDate></item><item><title><![CDATA[Welcome to empress-blog]]></title><description><![CDATA[<p>Hey! Welcome to empress-blog, it's great to have you :)</p>
+<p>We know that first impressions are important, so we've populated your new site with some initial <strong>Getting Started</strong> posts that will help you get familiar with everything in no time. This is the first one!</p>
+<h3 id="thereareafewthingsthatyoushouldknowupfront">There are a few things that you should know up-front:</h3>
+<ol>
+<li><p>empress-blog is designed to be a static site version of the amazing <a href="https://ghost.org/">Ghost blogging platform</a></p></li>
+<li><p>empress-blog is designed for developers who know how to deploy a static site (folder of html files and assets) using something like S3 or even just on NGINX.</p></li>
+<li><p>If you are slightly less tech savvy or if you want to manage your blog outside of just a set of files in a git repo we highly recommend signing up for <a href="https://ghost.org/pricing/">Ghost</a></p></li>
+</ol>
+<h3 id="quickstart">Quick Start</h3>
+<pre><code class="sh language-sh"># if you don't have ember-cli installed already
+npm install -g ember-cli
+
+ember new super-blog
+cd super-blog
+
+ember install empress-blog empress-blog-casper-template
+</code></pre>
+<p>It will ask you if you want to update the <code>index.html</code> file and you should say yes 👍</p>
+<p>If you want to see the blog system running on your local machine just run <code>npm start</code> and you will
+be able to navigate to  <a href="http://localhost:4200">http://localhost:4200</a> to see the blog in action.</p>
+<hr />
+<p>The main thing you'll want to read about next is probably: <a href="/the-editor/">editing files with empress-blog</a>.</p>
+<p>Once you're done reading, you can simply delete the default <strong>Ghost</strong> user from your team to remove all of these introductory posts!</p>]]></description><link>https://knownasilya.github.io/welcome</link><guid isPermaLink="true">https://knownasilya.github.io/welcome</guid><pubDate>Tue, 12 Jun 2018 17:59:59 GMT</pubDate></item></channel></rss>
