@@ -1,6 +1,6 @@
 ---
 name: Ilya Radchenko
-id: chris
+id: ilya
 image: /images/ilya.jpg
 cover:
 website: https://ilyaradchenko.com
