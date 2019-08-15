@@ -1,0 +1,16 @@
+on: push
+name: Deploy
+jobs:
+  deployToGitHubPages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@1.1.2
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BASE_BRANCH: site
+        BRANCH: master
+        BUILD_SCRIPT: npm install && npm run build:prod
+        FOLDER: dist
