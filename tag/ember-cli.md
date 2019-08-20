@@ -1,4 +1,4 @@
 ---
 name: ember-cli
-image: ''
+image: 
 ---

@@ -1,4 +1,4 @@
 ---
 name: Introduction
-image: ''
+image: 
 ---

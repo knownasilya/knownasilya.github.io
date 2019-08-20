@@ -1,4 +1,4 @@
 ---
 name: career
-image: ''
+image: 
 ---

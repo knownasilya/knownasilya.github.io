@@ -1,6 +1,6 @@
 ---
 title: Hello
-image: ''
+# image: ''
 authors:
   - ilya
 date: '2014-11-21T15:55:14.000Z'

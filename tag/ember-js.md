@@ -1,4 +1,4 @@
 ---
 name: ember.js
-image: ''
+image: 
 ---

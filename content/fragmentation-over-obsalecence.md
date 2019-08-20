@@ -1,6 +1,6 @@
 ---
 title: Fragmentation Over Obsolescence
-image: >-
+# image: >-
   # https://images.unsplash.com/photo-1560759226-14da22a643ef?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ
 authors:
   - ilya

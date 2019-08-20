@@ -1,4 +1,4 @@
 ---
 name: podcast
-image: ''
+image: 
 ---

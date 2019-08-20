@@ -1,6 +1,6 @@
 ---
 title: Use Ember CLI
-image: ''
+# image: ''
 authors:
   - ilya
 date: '2015-01-15T21:07:17.000Z'

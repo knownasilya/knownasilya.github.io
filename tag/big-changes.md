@@ -1,4 +1,4 @@
 ---
 name: big-changes
-image: ''
+image:
 ---

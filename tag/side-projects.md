@@ -1,4 +1,4 @@
 ---
 name: side-projects
-image: ''
+image: 
 ---

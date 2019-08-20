@@ -1,6 +1,6 @@
 ---
 title: Quotes Project
-image: ''
+# image: ''
 authors:
   - ilya
 date: '2016-04-05T16:00:38.000Z'

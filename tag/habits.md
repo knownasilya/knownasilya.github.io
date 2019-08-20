@@ -1,4 +1,4 @@
 ---
 name: habits
-image: ''
+image: 
 ---

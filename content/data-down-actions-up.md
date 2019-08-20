@@ -1,6 +1,6 @@
 ---
 title: 'Data Down, Actions Up'
-image: ''
+# image: ''
 authors:
   - ilya
 date: '2015-04-20T16:34:16.000Z'
