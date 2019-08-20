@@ -1,6 +1,6 @@
 ---
 title: Bad Habits and FOMO
-image: /content/images/2019/03/IMG_20190218_080031.jpg
+# image: /content/images/2019/03/IMG_20190218_080031.jpg
 authors:
   - ilya
 date: '2019-03-07T04:49:59.000Z'

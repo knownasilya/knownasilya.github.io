@@ -1,6 +1,6 @@
 ---
 title: Learning something about myself
-image: /content/images/2018/08/37876691_1901260753266775_2599436854625304576_n.jpg
+# image: /content/images/2018/08/37876691_1901260753266775_2599436854625304576_n.jpg
 authors:
   - ilya
 date: '2018-08-08T20:31:29.000Z'

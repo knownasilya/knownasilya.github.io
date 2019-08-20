@@ -1,6 +1,6 @@
 ---
 title: Sharing Components with Engines
-image: /content/images/2018/03/2618892936_7646f771de_b.jpg
+# image: /content/images/2018/03/2618892936_7646f771de_b.jpg
 authors:
   - ilya
 date: '2018-03-19T14:02:57.000Z'

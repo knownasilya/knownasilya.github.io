@@ -1,6 +1,6 @@
 ---
 title: Joining Crash
-image: /content/images/2019/02/20171021_143256-1.jpg
+# image: /content/images/2019/02/20171021_143256-1.jpg
 authors:
   - ilya
 date: '2019-01-29T19:46:30.000Z'

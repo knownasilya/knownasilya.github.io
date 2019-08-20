@@ -1,6 +1,6 @@
 ---
 title: Ember In 2018 and Beyond
-image: /content/images/2018/05/ember_Ember-Light-e42a2b30-2.png
+#image: /content/images/2018/05/ember_Ember-Light-e42a2b30-2.png
 authors:
   - ilya
 date: '2018-05-22T20:31:27.000Z'

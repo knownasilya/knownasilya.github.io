@@ -1,6 +1,6 @@
 ---
 title: What I'm Listening To
-image: /content/images/2019/03/MVIMG_20190226_175413.jpg
+# image: /content/images/2019/03/MVIMG_20190226_175413.jpg
 authors:
   - ilya
 date: '2019-03-07T19:52:32.000Z'

@@ -1,6 +1,6 @@
 ---
 title: Lessons From Unfocused Side Projects
-image: /content/images/2019/01/IMG_20181104_165153-EFFECTS.jpg
+# image: /content/images/2019/01/IMG_20181104_165153-EFFECTS.jpg
 authors:
   - ilya
 date: '2019-01-13T22:35:36.000Z'
