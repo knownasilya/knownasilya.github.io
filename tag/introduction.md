@@ -1,6 +1,4 @@
 ---
 name: Introduction
-image:
-imageMeta:
+image: ''
 ---
-My introduction
