@@ -1,5 +1,8 @@
-on: push
 name: Deploy
+on:
+  push:	
+    branches:	
+      - site
 jobs:
   deployToGitHubPages:
     name: Deploy to GitHub Pages
