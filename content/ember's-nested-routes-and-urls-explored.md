@@ -1,5 +1,5 @@
 ---
-title: 'Ember's Nested Routes and URLs Explored'
+title: 'Ember''s Nested Routes and URLs Explored'
 # image: ''
 authors:
   - ilya
