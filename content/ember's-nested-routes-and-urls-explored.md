@@ -1,12 +1,13 @@
 ---
-  title: 'Ember's Nested Routes and URLs Explored'
-  # image: ''
-  authors:
-    - ilya
-  date: '2019-12-05T22:14:07.784Z'
-  tags:
-  ---
-  Ember's router is powerful and a bit unique, in that it has a nested structure for the routes which build up the URL a user would see in the browser.
+title: 'Ember's Nested Routes and URLs Explored'
+# image: ''
+authors:
+  - ilya
+date: '2019-12-05T22:14:07.784Z'
+tags:
+  - ember-js
+---
+Ember's router is powerful and a bit unique, in that it has a nested structure for the routes which build up the URL a user would see in the browser.
 Given it's power, it is easy to be unsure about how to structure your routes, especially in scenarios where you have parent-child UI patterns or CRUD like
 resources.
 
