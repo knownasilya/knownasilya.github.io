@@ -3,7 +3,7 @@ title: 'Using Nested Routes In Ember'
 # image: ''
 authors:
   - ilya
-date: '2019-12-06T14:19:06.652Z'
+date: '2019-12-06T14:19:07.652Z'
 tags:
   - ember-js
 ---
