@@ -1,5 +1,5 @@
 ---
-title: 'Using Nested Routes In Ember'
+title: 'Using Nested Routes In Ember.js'
 # image: ''
 authors:
   - ilya
