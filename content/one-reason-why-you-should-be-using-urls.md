@@ -16,12 +16,12 @@ The way that Ember has routes and UI setup promotes these exclusive states in th
 
 ```js
 this.route('onboarding', function () {
-// 'index' is predefined and is step 0
-this.route('step1');
-this.route('step2');
-this.route('step3');
-// 'loading' is predefined
-// 'errored' is predefined
+  // 'index' is predefined and is step 0
+  this.route('step1');
+  this.route('step2');
+  this.route('step3');
+  // 'loading' is predefined
+  // 'errored' is predefined
 });
 ```
 
