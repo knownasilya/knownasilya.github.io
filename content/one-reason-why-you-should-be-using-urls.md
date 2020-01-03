@@ -27,4 +27,8 @@ this.route('onboarding', function () {
 
 As you can see, if you visit `onboarding` you will land on the `index` route, which can be step 0 or can redirect you to the correct step. This is the initial state of our onboarding state-machine. If the `index` route loads something, it will transition to `loading` before rendering. So you can only be in one of the substates of the `onboarding` route.
 
-If you want to read more about routing, check out my [Using Nested Routes In Ember](https://ilyaradchenko.com/using-nested-routes-in-ember)
+You can now transition from `index` to another sibling route using `transitionTo` on the [`router` service](https://api.emberjs.com/ember/release/classes/RouterService) or on routes (`transitionToRoute` in a controller). Something like `this.router.transitionTo('onboarding.step1')`. Once again `loading` and maybe `errored` will be entered during/after the `model` loading phase. Using this structure to define nested UI, since the child routes are nested in whatever UI is defined in the `onboarding` template, allows you to define exclusive states and prevents subtle bugs that might creep up if you decided to handle these steps using `{{#if (eq this.step 'step1')}}` syntax, especially if you have multiple if statements for the same state for different pieces of UI, it makes it hard to reason about and allows your app to be in unknown states you didn't intent.
+
+So in closing, the URL is important, because it drives nested UI in a state-machine fashion which keeps your app easier to understand, read, and prevents bugs in many cases.
+
+If you want to read more about routing, check out my post about [Using Nested Routes In Ember](https://ilyaradchenko.com/using-nested-routes-in-ember).
