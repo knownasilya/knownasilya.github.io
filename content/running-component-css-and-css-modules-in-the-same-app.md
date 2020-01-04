@@ -12,10 +12,10 @@ With Ember Octane [now released](https://blog.emberjs.com/2019/12/20/octane-is-h
 First, install both dependencies. Second you need to tell Component CSS to not run CSS Module files, so add this to your `config/environment.js`:
 
 ```
-   'ember-component-css': {
-     // ignore css-modules styles
-     excludeFromManifest: ['**/*.module.scss']
-   },
+ENV['ember-component-css'] = {
+  // ignore css-modules styles
+  excludeFromManifest: ['**/*.module.scss']
+};
 ```
 
 We decided to use `styles.module.scss` as the name for CSS Modules, and Component CSS uses `styles.scss`. To get CSS Modules to use this format, we need another config, this time in `ember-cli-build.js`
@@ -23,18 +23,18 @@ We decided to use `styles.module.scss` as the name for CSS Modules, and Componen
 ```
 const nested = require('postcss-nested');
 // ...
-   cssModules: {
-     extension: 'module.scss',
-     intermediateOutputPath: 'app/styles/_modules.scss',
-     plugins: {
-       before: [nested]
-     }
-   },
+cssModules: {
+  extension: 'module.scss',
+  intermediateOutputPath: 'app/styles/_modules.scss',
+  plugins: {
+    before: [nested]
+  }
+},
 ```
 
 > Notice that you need to install `postcss-nested` to allow for nested syntax and nested `:global` selector.
 
-Now in `app/styles.scss` you need to add the modules import after the pods import:
+Now in `app/styles/app.scss` you need to add the modules import after the pods import:
 
 ```scss
 @import 'pod-styles.scss';
