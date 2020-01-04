@@ -7,7 +7,7 @@ date: '2020-01-03T23:02:29.750Z'
 tags:
   - ember-js
 ---
-With Ember Octane being [released]() it's a good time to start looking at upgrading that app. One of the issues we faced at Crash with upgrading is that Ember Component CSS doesn't support Glimmer components and even breaks on classic components because of some changes to the framework. So we decided to run Component CSS alongside CSS Modules, because we have a good amount of CSS (as do most apps). I won't go into why we decided to use CSS Modules (a post coming in the future on this topic), but I will show you how to get them running together.
+With Ember Octane [now released](https://blog.emberjs.com/2019/12/20/octane-is-here.html) it's a good time to start looking at upgrading that app. One of the issues we faced at Crash with upgrading is that Ember Component CSS doesn't support Glimmer components and even breaks on classic components because of some changes to the framework. So we decided to run Component CSS alongside CSS Modules, because we have a good amount of CSS (as do most apps). I won't go into why we decided to use CSS Modules (a post coming in the future on this topic), but I will show you how to get them running together.
 
 First, install both dependencies. Second you need to tell Component CSS to not run CSS Module files, so add this to your `config/environment.js`:
 
