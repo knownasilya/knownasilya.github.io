@@ -5,7 +5,8 @@ authors:
   - ilya
 date: '2020-01-05T03:59:24.224Z'
 tags:
-  - ember-js
+  - big-changes
+  - focused
 ---
 Had a bunch of friends from Sojourn church come and help unload today, it was a blessing to us to have friends that really care. It's one of the reasons
 that we moved back to Traverse City (not directly, but close enough to TC), mainly that it's harder and harder to find good friends as you get older. It's been difficult for me especially, so I'm learning to reach out more and to listen more than speaking.
