@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[More Than Code]]></title><description><![CDATA[More Than Code]]></description><link>https://ilyaradchenko.com/rss.xml</link><generator>ember-casper-template</generator><lastBuildDate>Sun, 05 Jan 2020 04:02:02 GMT</lastBuildDate><atom:link href="https://ilyaradchenko.com/rss.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[Billing and Finite State Machines]]></title><description><![CDATA[<p>This week I've been coding up some billing workflows and it has been a while since I've done that, so naturally I underestimated the amount of work that is required for proper billing.</p>
+<p>Thankfully I'm using Stripe, which has all of their many ducks in a row and great documentation and testing tools. Every time I work on billing I lean towards using a finite state machine to represent my workflow, but I never end up doing it, because for some reason it's hard for me to decide on and stick to using FSMs, maybe because it's just so against how my brain thinks or it's because I think the problem will be easier. Well it usually never ends up easier, and in the end I regret not using a FSM. Maybe something like #nocode/visual editing would help with this kind of disconnect for me and state machines.</p>
+<p>Just some raw thoughts as I'm working on billing. What has been your experience with billing and FSMs on the server or client side?</p>]]></description><link>https://ilyaradchenko.com/billing-and-finite-state-machines</link><guid isPermaLink="true">https://ilyaradchenko.com/billing-and-finite-state-machines</guid><pubDate>Thu, 26 Sep 2019 15:31:32 GMT</pubDate></item><item><title><![CDATA[Data Down, Actions Up]]></title><description><![CDATA[<p>I hear many people asking how they can compose components, and since the Ember
+Guides [http://guides.emberjs.com/]  don't help us in that respect, I wrote my
+own guide as a PR [https://github.com/emberjs/guides/pull/66]  to the guides. I
+figured that I might as well get this out to the public while I wait on it
+getting merged. This will allow us to improve the guide, so feel free to leave
+comments/suggestions in the PR (inline, etc).</p>
+<hr />
+<p>Components really shine when you use them to their full potential, which is when
+you compose them.
+Take for example the <ul>  element, and the fact that only <li>  elements are
+appropriate as children.
+If we want the same type of behavior, then we have to compose our components.</p>
+<p>Just like we compose regular HTML elements, we can do the same with components.</p>
+<p>{{#user-list users=model sortBy='name' as |user|}}
+  {{user-card user=user}}
+{{/user-list}}</p>
+<p>Component Blocks
+Components can be used in two forms, just like regular HTML elements.</p>
+<p>Inline Form</p>
+<p>{{user-list users=model}}</p>
+<p>Block Form</p>
+<p>{{#user-list users=model}}
+  {{!-- custom template here --}}
+{{/user-list}}</p>
+<p>To compose components, we must use the block form, but we must also
+be able to distinguish from within our component which form the user
+is implementing. This can be done with the template  property.</p>
+<p>{{#if template}}
+  {{yield}}
+{{else}}
+  </p>
+<p>No Template Specified</p>
+<p>{{/if}}</p>
+<p>We can check if template  is truthy, and if it is that means that the user
+specified a custom template.
+Well, once we have a template, we probably want to use that in our component,
+and that's exactly what {{yield}}  does.</p>
+<p>This helper can be used once, or many times. You can make your component into a
+type of <ul>  element,
+that is a list that will repeat n times. Like the following example, where we
+can output a custom summary.</p>
+<p>{{#each posts as |post|}}
+  </p>
+<h3>{{post.title}}</h3>
+<p>{{yield}}</p>
+<p>{{/each}}</p>
+<p>Which can be used like so:</p>
+<p>{{#post-list posts=model}}
+  Greatest post ever!
+{{/post-list}}</p>
+<p>And will result in the following HTML:</p>
+<div id="ember123" class="ember-view">
+  <h3>Tomster goes to town</h3>
+  <p>Greatest post ever!</p>
+  <h3>Tomster on vacation</h3>
+  <p>Greatest post ever!</p>
+</div>
+<p>But what use is it to just output the same thing over and over? Don't we want to
+customize our posts,
+and display the right content? Sure we do. Lets explore the {{yield}}  helper a
+bit.</p>
+<p>Data Down
+To accomplish composability beyond just simple templates, we need to pass
+context to those templates. This can be done with the {{yield}}  helper.</p>
+<p>The {{yield}}  defines where the template we defined inside our component block
+will yield in the component's layout, as we saw in the previous section. Apart
+from that, the yield helper also allows us to send data down, providing a
+context for the templates.</p>
+<p>{{yield}}
+{{yield "hello"}}
+{{yield item}}
+{{yield this "bye"}}</p>
+<p>By default yield does not send any context, but you can provide an arbitrary
+number of arguments.
+Once you are sending data down, the child components need to consume that data.
+We can do this with the as  operator. Let's take {{yield user "My Item"}}  as an
+example:</p>
+<p>{{#user-list users=model as |user title|}}
+  </p>
+<h3>{{title}}</h3>
+<p>{{user-card user=user}}
+{{/user-list}}</p>
+<p>Now {{user-card}}  has access to the current user, which would change if 
+{{user-list}}  placed it's yield helper inside an each block.
+This opens up the possibility to use the {{component}}  helper for different
+templates, for example:</p>
+<h3>Profile</h3>
+<p>{{yield "user-avatar" user}}
+{{yield "user-contact" user}}</p>
+<p>{{#user-profile user=model as |section user|}}
+  {{component section user=user}}
+{{/user-profile}}</p>
+<p>With the {{component}}  helper, we can bind our context to names of components
+dynamically, which in this case means that we can customize
+the user profile with custom components bound to the relevant data. This means
+we can have multiple extension points in our components, making them much more
+versatile.</p>
+<p>Actions Up
+Now that we can send data down, we probably want to manipulate that data via
+some user interaction,
+like changing a user's avatar, or whatever it is you're doing. We can accomplish
+this by using actions.</p>
+<p>Actions are great, but for actions to work in the right context, we must use the
+ targetObject  property to specify
+where we want the action to go. Before we can specify the targetObject  property
+on our "acting" component, we need
+to expose that target as the context.</p>
+<p>{{yield this}}</p>
+<p>The targetObject  is the component that you want to handle the action, in this
+case it's the parent component.</p>
+<p>{{#user-profile user=model as |profile|}}
+  {{user-avatar change="updateAvatar" targetObject=profile}}
+{{/user-profile}}</p>
+<p>Since profile  is the instance of the {{user-profile}}  component, that means it
+can accept the "updateAvatar" action request.
+The action must be defined on the user profile component instance.</p>
+<p>Here's a mash-up of the possible scenarios with actions:</p>
+<p>{{#full-post post=model as |fullPost|}}
+  {{post-like like="like" targetObject=fullPost}}
+  {{post-subscribe subscribe="subscribe" targetObject=fullPost}}
+  {{comment-box submit="addComment" targetObject=post viewName="commentBox"}}</p>
+<p><button type="button" {{action "fullScreen" target=commentBox}}>Zen Mode</button>
+{{/full-post}}</p>
+<p>Note: When using {{action}}  helpers, instead of a component, you need to
+specify target  instead of targetObject.
+Also, when working with actions and sibling components, use viewName  to
+"export" the sibling component instance as a possible target.</p>]]></description><link>https://ilyaradchenko.com/data-down-actions-up</link><guid isPermaLink="true">https://ilyaradchenko.com/data-down-actions-up</guid><pubDate>Mon, 20 Apr 2015 16:34:16 GMT</pubDate></item><item><title><![CDATA[Ember's Nested Routes and URLs Explored]]></title><description><![CDATA[<p>Ember's router is powerful and a bit unique, in that it has a nested structure for the routes which build up the URL a user would see in the browser.
+Given it's power, it is easy to be unsure about how to structure your routes, especially in scenarios where you have parent-child UI patterns or CRUD like
+resources.</p>
+<p>One of the patterns that I've learned is not using extra nesting when want to build out a multi-part URL structure, like <code>/users/1234</code>, which seems like it should be nested, but generally
+a single level is enough. I'd structure it like this:</p>
+<pre><code class="js language-js">this.route('user', { path: '/users/:userId' });
+</code></pre>
+<p>This puts your user "view" route at the <code>app/pods/user</code> directory (my examples will use PODS, since they are sane for routes).
+The following is generally not the way I'd write my router map, even though it creates the same URL pattern.</p>
+<pre><code class="js language-js">this.route('users', function () {
+this.route('user', { path: ':userId' });
+});
+</code></pre>
+<p>Unless you are showing the list of users at the same time as the selected user, which I think is a rare pattern, this is probably not the way your route should work.
+The reason I wouldn't do this is because it adds unnecessary mental overhead between the list and a selected item from the list.
+With my preferred pattern, if I wanted a list route, it would be a sibling to the resources.</p>
+<pre><code class="js language-js">this.route('users');
+this.route('user', { path: '/users/:userId' });
+</code></pre>
+<p>And the folder structure is sane as well:</p>
+<pre><code>app
+pods
+  users
+  user
+</code></pre>
+<p>Since the two usually don't share any common UI, the common UI will probably be one route up or at the <code>application</code> route.
+Well that's it! Let me know if this is how you do it or if you completely disagree.</p>]]></description><link>https://ilyaradchenko.com/ember&apos;s-nested-routes-and-urls-explored</link><guid isPermaLink="true">https://ilyaradchenko.com/ember&apos;s-nested-routes-and-urls-explored</guid><pubDate>Thu, 05 Dec 2019 22:14:07 GMT</pubDate></item><item><title><![CDATA[Ember In 2018 and Beyond]]></title><description><![CDATA[<p>This post is in response to the Call for Blog Posts
+[https://emberjs.com/blog/2018/05/02/ember-2018-roadmap-call-for-posts.html] 
+put out there by the core team. Have a look at all the other blog posts in this
+series [https://github.com/zinyando/emberjs2018-posts]. Most of what I'll say
+has probably been said, but I think it's worth repeating to show the important
+things via repetition.</p>
+<p>I'm an avid user of Ember and have been using it since the RCs of v1.0.0. I love
+Ember, warts and all, which means I have come to terms with many of it's issues
+and short comings. Having said that, I see a future that is brighter, where
+Ember is a major contendor and trend setter in the frontend community. What
+follows are the things that I think  need to change to make that vision come
+true.</p>
+<p>Ship the things
+The Ember community is one focused on conventions and shared solutions rather
+then many solutions without a clear winner. This makes it hard to focus on one
+area, since we need conventions in many areas of frontend development. Due to
+this difficulty I think we've gotten many hands in many things and many of those
+are half finished. I think we need to double down as a community and finish the
+things that we've started.</p>
+<p>I'm one of those that loved the idea of Routable Components, even when the goal
+was moving further and further away. It was promised so long ago and I hoped for
+so long. When Yehuda Katz [https://mobile.twitter.com/wycats]  closed  that RFC,
+I think a bit of that dream died, but at the same time I was happy. Not because
+it wasn't going to happen but because there was clear communication, finally. In
+the same way, we might need to put some in-progress work on the backburner with
+clarity and divert resources to work that is more pressing.</p>
+<p>Fix the bugs
+A big part of Ember is the router, but that is probably also one of the messiest
+parts with lots of cruft due to the churn in the earliest days of Ember. There
+has been much work in the last couple of years (thanks Trent Willis
+[https://mobile.twitter.com/trentmwillis]  and others!) to clean up and document
+more of the router code, but this part is still very brittle
+[https://github.com/emberjs/ember.js/labels/Query%20Params]. Almost every app
+that I have built using Ember has used the URL in a major way for users of the
+apps.</p>
+<p>One of the biggest things when new users come in is to run into these bugs that
+have been open for a while, and it's not the most encouraging thing when you
+want to build something on top of this big framework.</p>
+<p>Focus on longterm vision
+Many have spoken about marketing, vision and brand, but I think it's worth
+repeating that it's super important. For Ember to grow we need a long term
+vision that needs to grow as the wider community grows. We made some early bets
+that have worked out well, and we need to keep doing that in the technical
+sphere, but we also need to do that for the image of the framework. We don't
+have the backing and resources of the big companies that React and Angular have,
+so we must be more focused.</p>
+<p>Starting with a marketing team, which should be responsible for branding, the
+main website and promoting the framework on social media.</p>
+<p>I think this is also the place to hone what Ember is. I really like the idea of
+Ember as a Component-Service Framework
+[https://medium.com/@pzuraq/emberjs-2018-ember-as-a-component-service-framework-2e49492734f1] 
+ as proposed by @pzuraq [https://mobile.twitter.com/pzuraq]. Many have a view of
+Ember as MVC, and I think that is hurting more then helping when other
+frameworks put themselves forward as component based.</p>
+<p>https://mobile.twitter.com/pzuraq</p>
+<p>I ❤️ Ember
+Just the fact that we can learn from others and do so actively - take this whole
+"call for blog posts" initiative - really gives me hope in Ember's future. I
+know that the core team cares deeply about the future of Ember and this shows in
+their attitude. Many have said some hard things in response, and I hope those
+hard things cause a stir in the community for the better for Ember's future. We
+need more leaders to step up and organize/delegate in the right areas.</p>
+<p>Thanks to David Baker [https://mobile.twitter.com/acorncom]  for reviewing this
+post!</p>]]></description><link>https://ilyaradchenko.com/ember-in-2018-and-beyond</link><guid isPermaLink="true">https://ilyaradchenko.com/ember-in-2018-and-beyond</guid><pubDate>Tue, 22 May 2018 20:31:27 GMT</pubDate></item><item><title><![CDATA[Favorite Ember Addons]]></title><description><![CDATA[<p>I decided to write down some of my favorite Ember.js addons that I have used
+in the past. There are a handful of addons marked with [bleeding edge], meaning
+they are either alpha or experimental in nature.</p>
+<p>All Projects</p>
+<ul>
+<li>https://github.com/ember-template-lint/ember-cli-template-lint  lint the
+templates</li>
+<li>https://github.com/ember-cli-deploy/ember-cli-deploy  Deployment pipeline
+addons or apps</li>
+</ul>
+<p>Building Apps</p>
+<ul>
+<li>https://github.com/emberjs/ember-optional-features  [bleeding edge] Enable
+optional features (will be in cli soon)</li>
+<li>https://github.com/ef4/ember-auto-import  [bleeding edge] Make importing npm
+modules easy</li>
+<li>https://github.com/rwjblue/ember-angle-bracket-invocation-polyfill  [bleeding
+edge] React style component names</li>
+<li>https://github.com/ember-decorators/ember-decorators  [bleeding edge] ES
+Classes for components</li>
+<li>https://github.com/machty/ember-concurrency  Managing Asynchrony</li>
+<li>https://github.com/offirgolan/ember-parachute  Managing Query Params</li>
+<li>https://github.com/ember-animation/liquid-fire  Animations</li>
+<li>https://github.com/cibernox/ember-power-select  Awesome select component</li>
+<li>https://github.com/cibernox/ember-power-calendar  Awesome calendar component</li>
+<li>https://github.com/tim-evans/ember-page-title  Set the title of pages</li>
+<li>https://github.com/amiel/ember-data-url-templates  [ember data] Easilly
+extend urls for server requests</li>
+<li>https://github.com/machty/ember-constraint-router  [bleeding edge]
+Alternative routing, good for realtime</li>
+<li>https://github.com/cardstack/ember-toolbars  Managing toolbars with
+animations</li>
+<li>https://github.com/freshbooks/ember-responsive  Media queries for your
+code/templates</li>
+<li>https://github.com/simplabs/ember-simple-auth  A great solution for all types
+of authentication</li>
+<li>https://github.com/ember-engines/ember-engines  Splitting apps for loose
+coupling (great for multiple teams), also lazy loading</li>
+</ul>
+<p>Building Addons</p>
+<ul>
+<li>https://github.com/ember-learn/ember-cli-addon-docs  Versioned documentation</li>
+<li>https://github.com/ember-template-lint/ember-template-recast  Editing
+templates programatically</li>
+</ul>
+<p>Writing Tests</p>
+<ul>
+<li>https://github.com/simplabs/qunit-dom  Simple abstraction over DOM for
+testing elements (cli soon)</li>
+<li>https://github.com/Cropster/ember-visual-test  Visual testing</li>
+<li>https://github.com/salsify/ember-milestones  [bleeding edge] Testing micro
+async state</li>
+</ul>
+<p>What are some of your favorite addons? Leave your comments here
+[https://mobile.twitter.com/knownasilya/status/1004430985826652161].</p>]]></description><link>https://ilyaradchenko.com/favorite-ember-addons</link><guid isPermaLink="true">https://ilyaradchenko.com/favorite-ember-addons</guid><pubDate>Wed, 06 Jun 2018 18:30:28 GMT</pubDate></item><item><title><![CDATA[Bad Habits and FOMO]]></title><description><![CDATA[<p>I have to be honest, I've only picked up on this term about a year ago (maybe
+longer) and at that time I didn't have any connection with the idea. A couple of
+months ago, I inadvertently stumbled on it again while reading Atomic Habits by
+James Clear [https://jamesclear.com/atomic-habits], and what an impact it had.</p>
+<p>One of the ideas in that book talks about cues and cravings, in regard to making
+good or bad habits. An example that James makes is in regard to checking your
+phone, it goes like this:</p>
+<p>Cue: A phone buzzes with a new text message.
+Craving: You want to learn the contents of the message.
+Response: You grab the phone and read the text.
+Reward: You satisfy your craving to read the message. Grabbing your phone
+becomes associated with your phone buzzing.
+– James Clear (Atomic Habits, page 51)This example stirred something within me
+because at that time I was dealing with checking Twitter way too much. I knew
+about my bad habit, of picking up the phone and opening Twitter any time there
+was a free moment or a time of silence. What I didn't know, was the reasoning
+behind why I was checking it so often. Mainly because I had not taken the time
+to analyze my habits.</p>
+<p>The process of behavior change always starts with awareness. You need to be
+aware of your habits before you can change them.
+– James Clear (Atomic Habits, page 66)This is where FOMO, or the fear of missing out,  comes into play. I analyzed
+this bad habit (did I mention that this was a bad habit?) and realized that I
+was doing it because I was afraid to miss something happening in the tech
+community, and specifically the Ember [http://emberjs.com]  community. I kept
+analyzing and realized that I had the same bad habit with Github, which usually
+occurred after Twitter had no content. So what now?</p>
+<p>The first step is not what  or how, but who. You need to know who you want to
+be. Otherwise, your quest for change is like a boat without a rudder.
+– James Clear (Atomic Habits, page 40)This section really resonated for me and
+told me what I already knew. And it's this: I won't change my habits if I don't
+remember (or know) who I am. Notice how I said "who I am" instead of "who I want
+to be". The reason this is important to me is because I have a solid identity
+that is defined by my relationship with God. I need to remember who I am (a
+child of God) so that I can focus on being who I am already. This sounds a bit
+strange, but in Christianity, there is an idea, "already but not yet", which
+illustrates that there is an ultimate reality already, but the time-based
+version of that reality is still catching up. God already sees me as His son,
+even though presently I have bad habits and sin because Jesus the perfect Son of
+God has paid for my sins (past, present, and future) and called me his co-heir.</p>
+<p>I really needed to remember that my identity and worth are not in how current I
+am in the Ember scene or how much I know. It's not in my job or my own vision of
+my future, but my identity and worth are in my relationship with God.</p>]]></description><link>https://ilyaradchenko.com/fomo</link><guid isPermaLink="true">https://ilyaradchenko.com/fomo</guid><pubDate>Thu, 07 Mar 2019 04:49:59 GMT</pubDate></item><item><title><![CDATA[Fragmentation Over Obsolescence]]></title><description><![CDATA[<p>Many people have written blog posts for #EmberJS2019 about where they want to
+see Ember headed in the next year or so. I'll add only one item of my own, since
+there are already many ideas in the pot. I believe we need to shift our
+mentality a bit.</p>
+<p>The Making Of Conventions
+Conventions come out of many failed experiments that have been run on real use
+cases, i.e. production apps. The Ember community loves conventions and cares
+about productivity, which unfortunately comes with a price, staying on the
+happy-path without the needed experimentation required for new conventions.</p>
+<p>For the pit-of-incoherence to be fruitful and push us up the
+hilltop-of-coherence, we as developers need to put ourselves out there and learn
+some lessons off the happy-path. It wont be easy, because it will cost us time,
+money, and failure. I think this step is especially hard for Ember developers
+because of the ethos that Ember has built.</p>
+<p>Fragmentation Results
+Inevitably fragmentation will occur. Some people might take their experiments
+too far, or abandon them. Other experiments might fail. Yes these are risks that
+exist, but should not stop us. The goal is to take the best fragments and build
+them up into a beautiful mosaic.</p>
+<p>At the end, when we reach the hilltop-of-coherence, some fragments will be left
+in the valley, maybe most of them. We do after all need alternatives and
+different views to see the flaws in our designs. Let's not hold on too tightly
+to our ideas and code, but focus on unity out of our individual ideas.</p>
+<p>A Greater Danger
+If we don't take up the cause to experiment for the greater good of the
+community, for building it up, then we'll just keep chasing the competition
+instead of building those conventions that can only be done by experimentation
+and failure. Ember will essentially become obsolete as it chases the other
+frameworks.</p>
+<p>This doesn't mean that we don't learn from the wider web community or that we
+don't adopt great ideas, but it does mean that we have our beliefs, our "why",
+and we should filter all great ideas through that "why". Here's to a year of
+experimentation and uniting in greater focus and vision as the Ember community.</p>]]></description><link>https://ilyaradchenko.com/fragmentation-over-obsalecence</link><guid isPermaLink="true">https://ilyaradchenko.com/fragmentation-over-obsalecence</guid><pubDate>Mon, 17 Jun 2019 16:42:14 GMT</pubDate></item><item><title><![CDATA[Hello]]></title><description><![CDATA[<p>This is the first post, and hopefully not the last ;) I'm Ilya Radchenko,
+usually go by 'knownasilya', and this is my blog where I write about life and
+web development.</p>
+<p>I'm a 'full stack' developer and usually work with Emberjs and Nodejs, but also
+dabble in Dart. This blog will not be purely technical, since I don't believe in
+separating who I am from what I do, since they are connected. This means that
+you'll also hear about my faith, since I'm a Christian. You'll get to find out
+what that means and how that affects my profession.</p>
+<p>Hopefully you stick around, since I'm not the best writer in the world, nor am I
+that interesting, but I'll try my best to post here when I can. Hope to hear
+from you in the comments along this journey, and to grow together in many
+facets.</p>
+<p>P.S. I'll be customizing this site/blog as the time goes on.</p>]]></description><link>https://ilyaradchenko.com/hello</link><guid isPermaLink="true">https://ilyaradchenko.com/hello</guid><pubDate>Fri, 21 Nov 2014 15:55:14 GMT</pubDate></item><item><title><![CDATA[Joining Crash]]></title><description><![CDATA[<p>I'm excited to announce that in just over a week I'll be joining Crash
+[https://crash.co]  to build the vision of helping you show your value while
+starting/changing a career.</p>
+<p>Crash is building the category of ”Career Launch" because the college degree is
+mostly an outdated solution from the pre-internet age and usually comes attached
+with overwhelming debt. The reason why I'm so eager to get started is because I
+believe in the vision of enabling young people to realize and show their
+potential without the chains of debt. What Crash offers isn't just a product to
+help you, but also a mindset shift to cause you to think differently about
+yourself, not only in the workplace, but also personally.</p>
+<p>Beyond the goals, I'm glad to be working with a super focused team, which is all
+the more rewarding. I'll be joining on to help build the products and the
+engineering team with Dave Wasmer [https://davewasmer.com/]. I'll continue to
+work with the tools I love, like Ember.js, TypeScript, and Node.js; as well as
+learning some new ones like GraphQL. I'm also looking forward to continuing to
+contribute to the open-source community.</p>
+<p>To find out more about what Crash is all about, check out this introductory 
+blog
+post [https://crash.co/blog/time-to-crash-your-career/].</p>]]></description><link>https://ilyaradchenko.com/joining-crash</link><guid isPermaLink="true">https://ilyaradchenko.com/joining-crash</guid><pubDate>Tue, 29 Jan 2019 19:46:30 GMT</pubDate></item><item><title><![CDATA[Learning something about myself]]></title><description><![CDATA[<p>This week has been a whirlwind of things, but the biggest of those is a decision
+to move back to the east coast. Coming to this decision has shown me, more
+clearly than ever, that I'm scared of radical changes in my personal life. In
+the past, I would have said that I like change, and that is partly true, at
+least in the sphere of work mainly with technical things. This experience has
+shown me otherwise.</p>
+<p>I'm learning that radical, fast change, is hard for me. Maybe it's not the
+change itself, but making that decision to make that change, when it touches so
+many parts of my life. Looking at the craziness of this week, I can see that
+this experience is good. I'm looking forward to this next adventure for my
+family. Looking at this season of time that I had with my family, has been very
+good and I have peace about this change as we make the move back.</p>]]></description><link>https://ilyaradchenko.com/learning-something-about-myself</link><guid isPermaLink="true">https://ilyaradchenko.com/learning-something-about-myself</guid><pubDate>Wed, 08 Aug 2018 20:31:29 GMT</pubDate></item><item><title><![CDATA[Lessons From Unfocused Side Projects]]></title><description><![CDATA[<p>Having worked on a few side-projects, and not having shipped any, I decided to
+analyze why that is and how to ship my next side-project. The problem for me is
+that I get excited and start putting in lots of work at the start and slowly get
+tired and move on to the next interesting idea that I have. Then it eats away at
+me in the back of my mind, because I wasn't able to finish the project.</p>
+<p>With my current project [https://github.com/loaves-and-fishes/community-groups],
+I decided to change things, because doing the same thing, hoping for different
+results is literally the definition of insanity. I've had this project idea on
+my mind for the last several years and it has grown in scope over that time. I
+hope to ship this project, so I have primarily written this for myself. Having
+said that, I do hope that it also helps you in your side-project journey.</p>
+<p>Do Only One Project
+If things were going to be different, I'd have to forget about all other
+projects on my backlog, and be focused on this single project. This means no
+going after any new shiny ideas, or resurrecting old projects. All other
+projects are on hold while the current one is active. This will help my mind and
+my time to be focused.</p>
+<p>Make It Manageable
+My idea started out small, but has grown over the last few years. If I was to
+tackle that whole idea as my side project, I'd be completely overwhelmed. So
+instead I've segmented my idea into 3 parts, and chose one of those parts.</p>
+<p>Even one of the parts is big enough to overwhelm. Now it's time to trim down and
+see what is the smallest app that I can ship that would be a useful tool for my
+audience. This step is important, because products always have more work than
+you expect.</p>
+<p>Keep Experimentation Minimal
+Every time I start a new project, I want to try some new tech. Usually this
+keeps compounding because I try to experiment with multiple areas of the app.
+For example, my main expertise is in Ember.js [https://emberjs.com/], but I
+wanted to try Polymer for a side project. I realized pretty quickly that I
+should not experiment at such a big level, because I don't know the tech and
+will spend more time learning then building my app.</p>
+<p>For my current side project, I decided to experiment with functional/utility
+CSS, i.e. TailwindCSS [https://tailwindcss.com]. This has worked out well so
+far. It lets me move fast and not have to go all in if I don't want to. Plus the
+core is still CSS, so I'm not learning something huge.</p>
+<p>Gate Keep Scope Creep
+As I build the app, I will see small issues that could be addressed to help the
+experience. These small fixes or enhancements will only grow the size of my
+project, growing the distance from where I am to where I need to be to ship this
+project. My goal is to ship something, after that I can reevaluate.</p>
+<p>For example, while building a members list I saw an opportunity to add a
+multiple tab UI to help distinguish/filter members that were pending on
+invitation. This is probably something that will eventually make it in, but at
+this time it's only distracting from shipping my first version. It's better if
+the users driver that development, or once the app is established.</p>
+<p>Set Personal Checkpoints
+It's very easy to lose track of when I last worked on my side project,
+especially I didn't record anything or set any expectations. All of a sudden a
+year has gone by and I have little to show for it. The first step is to set an
+internal deadline that I will try to reach. The second step is to split up
+chunks of work into checkpoints of sorts. With this kind of setup I'll have an
+end in sight and stepping stones that will help me track your progress.</p>
+<p>I'm going to start doing that by using the "Projects" feature in Github. This
+doesn't introduce any new tools to my workflow, which I think is important to
+keep the overhead small.</p>
+<p>Work In Public
+When no one knows what I'm up too, it's easy to just give up or move on to the
+next big thing. Once I'm accountable, things change, because I've involved
+others. It's a form of internal motivation, as well as external. For programming
+side-projects this usually starts as working in public with an open repository
+right from the beginning. I can also choose to share my work on social media
+(like Twitter) or record/stream videos on services like YouTube or Twitch.</p>
+<p>For my project I'm recording videos on YouTube (here
+[https://www.youtube.com/watch?v=EXvT4bUZqHg&amp;list=PLfQwL10yab39zHh-4Ub-u9IqwS5C0yHsE]
+) and posting on Twitter. I also have it public on Github (here
+[https://github.com/loaves-and-fishes/community-groups]). Beyond that, I also
+included it in a blog post (this one).</p>
+<p>Ship It
+This might sounds silly, but this is probably the biggest step to have a focused
+side-project. If I never ship my side-project, then I don't really know if I
+enjoy the full process. Plus preparing my project for shipping is much more
+involved then I might realize, and if it's skipped, I miss a big portion of the
+full process. After shipping, I can decide if the project is finished, or if I
+want to continue.</p>
+<p>If I've been working in public, then I will probably have at least a small
+audience, and have some potential users. Shipping will bring on new eyes and
+feedback. Maybe I'll have clients or maybe learn that the project was a good
+exercise and nothing more. Even if I end it here, I'll have gone to the end, and
+now have a portfolio item, and the experience that I've gained.</p>
+<p>Summarize Your Learnings
+Now that I've shipped (and maybe iterated a bit more), it is important that I
+sit down and write my thoughts out regarding this process. What did I enjoy or
+maybe not like one bit? Were there struggles along the way, what were they? Will
+I build something like this again? Was it worth it? I should write this down and
+maybe share it in a blog post (that's up to me). Next time I decide to start a
+new side-project, or maybe consider investing more time into this one, I'll at
+least have some idea of what I enjoy building and my strengths and weaknesses.
+I'll know where to spend more time to improve or what areas to avoid
+all-together.</p>
+<p>By finishing a side-project, I'll grow and learn about myself. But &nbsp;I must also
+remember, sometimes an idea just doesn't work out or I might learn early on that
+it's not right for me. In a situation like this, I shouldn't feel guilt/shame
+for not finishing the project. Make a clear break, write down my learnings, and
+move on.</p>]]></description><link>https://ilyaradchenko.com/lessons-from-unfocused-side-projects</link><guid isPermaLink="true">https://ilyaradchenko.com/lessons-from-unfocused-side-projects</guid><pubDate>Sun, 13 Jan 2019 22:35:36 GMT</pubDate></item><item><title><![CDATA[Moved Back To Michigan]]></title><description><![CDATA[<p>Had a bunch of friends from Sojourn church come and help unload today, it was a blessing to us to have friends that really care. It's one of the reasons
+that we moved back to Traverse City (not directly, but close enough to TC), mainly that it's harder and harder to find good friends as you get older. It's been difficult for me especially, so I'm learning to reach out more and to listen more than speaking.</p>
+<p>I also love the slower pace of life, as compared to the east coast, and want to slow down a bit more. I think my goal this year will be to slow down from the hustle and hurry and to just breathe. This means doing things outside of tech, like woodworking maybe, and spending more time outdoors and with friends. Also looking for more opportunities to listen, help, and share Jesus. I plan to spend less time on Twitter as well, and more time writing. I'm writing every day this month and it feels so good.</p>]]></description><link>https://ilyaradchenko.com/moved-back-to-michigan</link><guid isPermaLink="true">https://ilyaradchenko.com/moved-back-to-michigan</guid><pubDate>Sun, 05 Jan 2020 03:59:24 GMT</pubDate></item><item><title><![CDATA[One Reason Why You Should Be Using URLs]]></title><description><![CDATA[<p>One of the reasons that <a href="https://emberjs.com">Ember.js</a> is so powerful of a framework is because of its Router, and ultimately its bet on the web and the fact that the URL is important.
+With Ember's router, the URL becomes a nested state-machine for your app, which is one of the reasons you should be using URLs in your app whenever you can. Let me explain a bit.</p>
+<p>I'm just learning about state-machines, and from what I can tell one of the basics is that in the most simplest of state-machines, you represent a single state that can happen at one time. So for example, <code>fetching</code> or <code>errored</code> for an AJAX request, you cannot be in both states. Ember.js gives you these two for free in the router, the <a href="https://guides.emberjs.com/release/routing/loading-and-error-substates/#toc_loading-substates"><code>loading</code></a> and <a href="https://guides.emberjs.com/release/routing/loading-and-error-substates/#toc_error-substates"><code>errored</code></a> routes (or substates as the guides call them).</p>
+<p>The way that Ember has routes and UI setup promotes these exclusive states in the UI, because nested routes map to nested UI. So if you have a wizard UI for an onboarding kind of experience, you can model each step of that onboarding flow as a nested route:</p>
+<pre><code class="js language-js">this.route('onboarding', function () {
+  // 'index' is predefined and is step 0
+  this.route('step1');
+  this.route('step2');
+  this.route('step3');
+  // 'loading' is predefined
+  // 'errored' is predefined
+});
+</code></pre>
+<p>As you can see, if you visit <code>onboarding</code> you will land on the <code>index</code> route, which can be step 0 or can redirect you to the correct step. This is the initial state of our onboarding state-machine. If the <code>index</code> route loads something, it will transition to <code>loading</code> before rendering. So you can only be in one of the substates of the <code>onboarding</code> route.</p>
+<p>You can now transition from <code>index</code> to another sibling route using <code>transitionTo</code> on the <a href="https://api.emberjs.com/ember/release/classes/RouterService"><code>router</code> service</a> or on routes (<code>transitionToRoute</code> in a controller). Something like <code>this.router.transitionTo('onboarding.step1')</code>. Once again <code>loading</code> and maybe <code>errored</code> will be entered during/after the <code>model</code> loading phase. Using this structure to define nested UI, since the child routes are nested in whatever UI is defined in the <code>onboarding</code> template, allows you to define exclusive states and prevents subtle bugs that might creep up if you decided to handle these steps using <code>{{#if (eq this.step 'step1')}}</code> syntax, especially if you have multiple if statements for the same state for different pieces of UI, it makes it hard to reason about and allows your app to be in unknown states you didn't intent.</p>
+<p>So in closing, the URL is important, because it drives nested UI in a state-machine fashion which keeps your app easier to understand, read, and prevents bugs in many cases.</p>
+<p>If you want to read more about routing, check out my post about <a href="https://ilyaradchenko.com/using-nested-routes-in-ember">Using Nested Routes In Ember</a>.</p>]]></description><link>https://ilyaradchenko.com/one-reason-why-you-should-be-using-urls</link><guid isPermaLink="true">https://ilyaradchenko.com/one-reason-why-you-should-be-using-urls</guid><pubDate>Fri, 03 Jan 2020 03:40:30 GMT</pubDate></item><item><title><![CDATA[Quotes Project]]></title><description><![CDATA[<p>Recently I've been reading more non-fiction, specifically Christian non-fiction
+writing. During my reading I've been encountering many uplifting and deep quotes
+from authors of the past as well as modern day authors. I realized that I've
+read many quotes in the past, but for some reason this time I was convicted (or
+something) that I should record the quotes that I find beneficial for myself.</p>
+<p>Not all those who wander are lost. — J.R.R. Tolkien</p>
+<p>With this idea in mind, I decided to make my quote list opensource, so that it
+can be accessed by a different audience than just people on Twitter. Since I'm a
+web application developer, I figure that I have greater influence in that area,
+so Github seemed to be the best place for these quotes. Not to make a greater
+name for myself, but to have these quotes be a blessing and a beginning for
+someone.</p>
+<p>He is no fool who gives what he cannot keep to gain that which he cannot lose. —
+James Elliot</p>
+<p>So this is the repo [https://github.com/knownasilya/quotes]  along with the
+"polished" site [http://knownasilya.github.io/quotes/]. If you enjoy the quotes,
+feel free to star the repo. Also if you find a quote that makes sense for the
+list, please submit a pull request.</p>]]></description><link>https://ilyaradchenko.com/quotes-project</link><guid isPermaLink="true">https://ilyaradchenko.com/quotes-project</guid><pubDate>Tue, 05 Apr 2016 16:00:38 GMT</pubDate></item><item><title><![CDATA[Running Component CSS and CSS Modules in the Same App]]></title><description><![CDATA[<p>With Ember Octane <a href="https://blog.emberjs.com/2019/12/20/octane-is-here.html">now released</a> it's a good time to start looking at upgrading that app. One of the issues we faced at Crash with upgrading is that Ember Component CSS doesn't support Glimmer components and even breaks on classic components because of some changes to the framework. So we decided to run Component CSS alongside CSS Modules, because we have a good amount of CSS (as do most apps). I won't go into why we decided to use CSS Modules (a post coming in the future on this topic), but I will show you how to get them running together.</p>
+<p>First, install both dependencies. Second you need to tell Component CSS to not run CSS Module files, so add this to your <code>config/environment.js</code>:</p>
+<pre><code>ENV['ember-component-css'] = {
+  // ignore css-modules styles
+  excludeFromManifest: ['**/*.module.scss']
+};
+</code></pre>
+<p>We decided to use <code>styles.module.scss</code> as the name for CSS Modules, and Component CSS uses <code>styles.scss</code>. To get CSS Modules to use this format, we need another config, this time in <code>ember-cli-build.js</code></p>
+<pre><code>const nested = require('postcss-nested');
+// ...
+cssModules: {
+  extension: 'module.scss',
+  intermediateOutputPath: 'app/styles/_modules.scss',
+  plugins: {
+    before: [nested]
+  }
+},
+</code></pre>
+<blockquote>
+  <p>Notice that you need to install <code>postcss-nested</code> to allow for nested syntax and nested <code>:global</code> selector.</p>
+</blockquote>
+<p>Now in <code>app/styles/app.scss</code> you need to add the modules import after the pods import:</p>
+<pre><code class="scss language-scss">@import 'pod-styles.scss';
+@import 'modules';
+</code></pre>
+<p>Don't forget to also install <code>ember-css-modules-sass</code> to support SASS. And that should be it, let me know if you run into any issues on Twitter.</p>]]></description><link>https://ilyaradchenko.com/running-component-css-and-css-modules-in-the-same-app</link><guid isPermaLink="true">https://ilyaradchenko.com/running-component-css-and-css-modules-in-the-same-app</guid><pubDate>Fri, 03 Jan 2020 23:02:29 GMT</pubDate></item><item><title><![CDATA[Sharing Components with Engines]]></title><description><![CDATA[<p>Is this what I'm looking for?
+You have at least one engine and you want to share components from your parent
+app without having an in-repo-addon to share the common components. You might
+also want fine-grain control over how the components are setup and what data
+comes over. Most likely these are not UI-only components, but they deal with
+your app data and business logic.</p>
+<p>I'm hear to tell you that it's possible, but it's a manual process that involves
+using some "advanced" concepts that Ember introduced in v2. So lets dig in and
+see what that looks like.</p>
+<p>What it looks like
+I'm going to jump to the end and show you the result, then we'll go back and
+cover how to implement this in your app.</p>
+<p>We start with the template in your engine:</p>
+<p>It looks very simple, notice that the above is a component, and it's being
+rendered using dot notation off of a share  service.</p>
+<p>Now that we see how it's used, lets see how it's setup in our parent app.</p>
+<p>The above uses a custom component called share-ui  which acts like a proxy to
+our share  service. Then we use the built-in hash  helper which basically just
+creates an object and passes it as an "argument" to our component.</p>
+<p>You should alos notice that we use the component  helper, which lets us
+dynamically setup a component without calling it. In the above example we passed
+the user  from our parent application template context.</p>
+<p>Lets implement it
+We need two things to make this work, a share  service and the share-ui 
+component. Lets start with the service.</p>
+<p>I make an assumption that you have already setup your app and engine, since
+those two steps are documented elsewhere, I'll skip them for brevity.</p>
+<p>share  service
+We'll create our service first:</p>
+<p>It should look like so:</p>
+<p>This is all that needs to be done for the service. Make sure to share the
+service with your engine:</p>
+<p>Then in our engine we also define it:</p>
+<p>share-ui  component
+Now that we have our service, lets create our component and
+wire it all together.</p>
+<p>We'll start by injecting our service into the share-ui  component:</p>
+<p>Notice that we also have tagName  set, that is to prevent adding an unneeded div
+element into the DOM, since we aren't rendering any UI with this component. Now
+that our component can communicate with our service, we need to set the 
+component  argument on our service, so lets do that:</p>
+<p>We should now have the functionallity that we presented above. The on thing we
+missed is actually using the service in our engine, so just inject it
+in your component or controller, depending on where you use your shared
+components.</p>
+<p>Note: Make sure to use the share-ui  component in a parent template that will
+always be visible when the engine is used. I recommend the application 
+template.</p>
+<p>What now?
+The above example is powerful enough to support additional sharing, like helper
+and data. You can also share items from addons in your parent application,
+preventing duplication of addons between parent and engines.</p>
+<p>If you want to go further, you can even build a theming system ontop of this
+setup by defining UI components for each theme and having an attribute on the 
+share-ui  component that toggles between the different component sets.</p>
+<p>Feel free to connect via Twitter if you have any comments/suggestions.</p>]]></description><link>https://ilyaradchenko.com/sharing-components-with-engines</link><guid isPermaLink="true">https://ilyaradchenko.com/sharing-components-with-engines</guid><pubDate>Mon, 19 Mar 2018 14:02:57 GMT</pubDate></item><item><title><![CDATA[Use Ember CLI]]></title><description><![CDATA[<p>I've been using Ember.js since just before the first RC, and since then I've
+been wanting a sane project structure that just works. This was a struggle,
+since Ember told you to put everything on App.. :(</p>
+<p>After I heard about the proposed POD structure, I started working on emberate
+[https://github.com/AppGeo/emberate], which took a directory and processed the
+files in a way where you didn't have to deal with App, you'd just module.export 
+whatever code the file was about.</p>
+<p>Now mix emberate, browserify, and gulp  and you have a pretty decent build
+system, right? Well, something was missing, because it would be very brittle,
+and it's features were kinda barebones. There was more to be desired, and yes I
+tried ember-app-kit, but it was too bulky and required you to learn so many 
+grunt  plugins, that it was total overhead.</p>
+<p>Enter, ember-cli, yes it's not perfect, but it's the best thing we have for a
+build system that works. It's maintained by several of the Ember core team, and
+many other awesome contributors
+[https://github.com/ember-cli/ember-cli/graphs/contributors]. Not only does it
+support browserify [https://github.com/ef4/ember-browserify], but ES6 as well.
+There are generators, e.g. ember g  and ember d, like Rails had, and POD
+support. Not mentioning the addon system, http mocking with node.js, and
+build/server watching.</p>
+<p>There is no reason to not use it if you do anything that needs a build step.
+Even if you don't need one, it makes the structure uniform and anyone can come
+in and know what's up. It has the same goals as Ember, and there are even plans 
+to make it official.</p>
+<p>In Ember 2.0, Ember CLI and ES6 modules will become first-class parts of the
+Ember experience.</p>
+<p>Ember 2.0 RFC by Ember Team</p>
+<p>Ember CLI will be a big part of the transition from Ember 1.x to Ember 2.x,
+which is supposed to be a gradual transition from versions 1.10.0 and onward.
+Two-Point-O will just remove the deprecated features.</p>
+<p>You should begin moving your app to Ember CLI as soon as possible.</p>
+<p>Plus there is a huge community that is writting addons [emberaddons.com]  for
+Ember CLI. You can write your own too; I wrote pagination-pager
+[https://www.npmjs.org/package/pagination-pager], ember-cli-toggle
+[https://www.npmjs.org/package/ember-cli-toggle]  and ember-cli-pen
+[https://www.npmjs.org/package/ember-cli-pen]  (more to come). I also use a few
+of them, like liquid-fire [https://github.com/ef4/liquid-fire], ember-notify
+[https://github.com/aexmachina/ember-notify], ember-cli-less
+[https://github.com/gdub22/ember-cli-less], ember-browserify
+[https://github.com/ef4/ember-browserify], and others!</p>
+<p>So use it today, and you wont regret it tomorrow! Check out ember-cli.com
+[http://ember-cli.com]  to get started.</p>
+<p>P.S. Check out this gist by Sam Selikoff [https://github.com/samselikoff]  on
+how to future proof [https://gist.github.com/samselikoff/1d7300ce59d216fdaf97] 
+your Ember app.</p>]]></description><link>https://ilyaradchenko.com/use-ember-cli</link><guid isPermaLink="true">https://ilyaradchenko.com/use-ember-cli</guid><pubDate>Thu, 15 Jan 2015 21:07:17 GMT</pubDate></item><item><title><![CDATA[Using Nested Routes In Ember.js]]></title><description><![CDATA[<p>In my <a href="https://ilyaradchenko.com/ember's-nested-routes-and-urls-explored">last post</a> I mentioned how nested routes don't make sense sometimes, which means that they do have their uses at other times, which I want to cover here. I think the example I used in my last post wasn't clear enough, because what I meant to communicate is that if you want a nested URL structure, it doesn't always mean you need nested routes. I'd like to cover a scenarios that works really well with nested routes.</p>
+<h2 id="whenyouhavemanyresources">When You Have Many Resources</h2>
+<p>The first is an app that is heavily CRUD (create read update delete) focused and has more than ~3 resources. In these scenarios it helps to nest, because you end up with a clean folder structure, e.g.</p>
+<ul>
+<li><code>app</code></li>
+<li><code>pods</code><ul>
+<li><code>users</code></li>
+<li><code>groups</code></li>
+<li><code>articles</code></li>
+<li><code>categories</code></li></ul></li>
+</ul>
+<p>Which I'd model like this in the router map:</p>
+<pre><code class="js language-js">this.route('categories', function () {
+  // 'index' route is implicit and is for listing/filtering users
+  this.route('create');
+  this.route('category', { path: '/:categoryId' }, function () {
+    // 'index' route is implicit and is for viewing the user
+    this.route('edit');
+  });
+});
+</code></pre>
+<p>This pattern works really well because all sub-routes have access to the <code>users</code> route, and usually in ambitious CRUD apps you need to load some related dynamic data, like values for dropdowns that can be loaded at the top route and used with <code>this.modelFor('users')</code> in the child routes. This is usually useful in the <code>users.index</code> for filtering using a dropdown and in <code>users.create</code> and <code>users.user.edit</code> for selecting the value to create/update.</p>
+<p>At the <code>users.user</code> route, you'd load the actual model for viewing or editing, and the child routes would consume that via <code>modelFor</code>.</p>
+<p>This would create the following urls:</p>
+<ul>
+<li>/categories</li>
+<li>/categories/create</li>
+<li>/categories/1234</li>
+<li>/categories/1234/edit</li>
+</ul>
+<h2 id="whatabout">What About… ?</h2>
+<p>The above works really well, but the idea is that it's about organizing items into related groups that are talking about one thing. So scenarios where you have public routes and authenticated routes will also fall in this category. Wizards that have steps that should be url accessible also should be nested. Routes are kind of like state machines, where sibling routes are the states that the parent route can be in, and the <code>index</code> is the initial state.</p>
+<p>If your UI is nested and needs to be URL accessible at the different levels of nesting, use nested routes.</p>]]></description><link>https://ilyaradchenko.com/using-nested-routes-in-ember</link><guid isPermaLink="true">https://ilyaradchenko.com/using-nested-routes-in-ember</guid><pubDate>Fri, 06 Dec 2019 14:19:07 GMT</pubDate></item><item><title><![CDATA[What I'm Listening To]]></title><description><![CDATA[<p>I've been listening to a few podcasts in several different categories and wanted
+to share some of those with you.</p>
+<p>Development</p>
+<ul>
+<li>EmberMap [https://embermap.com/podcast]  - An Ember.js focused podcast with
+hosts Sam and Ryan, where they talk about not only Ember.js, but product
+development in general. Lots of insight here and always a fun listen.</li>
+<li>The Frontside [https://frontside.io/podcast/]  - A podcast from the Frontside
+consultancy which has historically been in the Ember.js community and
+recently have released the Microstates.js library. This podcast recently did
+a reboot, and I'm excited to hear more of that.</li>
+<li>Build Your SaaS [https://saas.transistor.fm/]  - A podcast documenting the
+journey that two co-founders are going down while building their SaaS
+(Trasistor.fm, podcast hosting service). Real and insightful at the same
+time.</li>
+<li>Art of Product [https://open.spotify.com/show/4AFHekKU9OMJnS0GLSG5sX]  - The
+journey of two startup founders n the process of building their products.
+Lots of nuggets and just raw honesty regarding the challenges and successes
+of being a founder and building good products.</li>
+<li>Full Stack Radio [http://www.fullstackradio.com/]  - Adam Wathan does a great
+job putting together great topics and interviews in the web development
+scene.</li>
+<li>Syntax [https://syntax.fm/]  - Nice show for some quick tips and topics for
+those that work for themselves in web development. Pretty laid back and
+relatable show.</li>
+<li>DatCast [https://dat-cast.hashbase.io/]  - A look into the dat community and
+the work going on in projects like the Beaker Browser. Only a few episodes.</li>
+</ul>
+<p>Christian</p>
+<ul>
+<li>Ask Pastor John [https://www.desiringgod.org/ask-pastor-john]  - Short
+snippets of answers to questions that are asked of Pastor John Piper, author
+and speaker. Lots of deep and insightful material here.</li>
+<li>Marriage After God
+[https://marriageaftergod.com/category/marriage-after-god-podcast/]  - Just
+started to listening to this one, but it's a refreshing and relatable podcast
+about marriage for a Christian from a couple. They are very open and honest
+about their own struggles and failures.</li>
+<li>Courageous Parenting [https://courageousparenting.com/episodes/]  - This is
+probably one of the most impactful podcasts that I've listened to recently.
+There is so much sound advice and practical teaching and it comes straight
+from the Bible. The hosting couple is relatable and transparent.</li>
+<li>Sojourn Sermons [http://www.sojourntraverse.com/sermons/]  - Technically not
+a podcast, but it's the church we attended in Traverse City and really love
+the quality and gospel centeredness of Matt's sermons. Currently doing the
+series on the book of James from 2015.</li>
+</ul>
+<p>Thinking Differently</p>
+<ul>
+<li>seanwes [https://seanwes.com/podcast/]  - Lots of great content about
+building a business, having an impact and making a difference from Sean and
+Ben. Been listening to their stuff for years.</li>
+<li>Office Hours [https://discoverpraxis.com/office-hours/]  - How to be your own
+credential and not put all (or any) of your hope into a college degree. Lots
+of light hearted humor, but also packed with deep and insightful wisdom for
+making your career.</li>
+<li>Forward Tilt [https://open.spotify.com/show/1u1u8amAwS1zDZhqYOIg0w]  -
+Leaning into being the the person people want to hire. Small nuggets that are
+easy to listen in small sessions and the podcast is finished.</li>
+<li>Crash Podcast [https://crash.co/blog/tag/podcast/]  - Stories of how people
+have crashed their careers in inventive and interesting ways.</li>
+</ul>]]></description><link>https://ilyaradchenko.com/what-im-listening-to</link><guid isPermaLink="true">https://ilyaradchenko.com/what-im-listening-to</guid><pubDate>Thu, 07 Mar 2019 19:52:32 GMT</pubDate></item></channel></rss>

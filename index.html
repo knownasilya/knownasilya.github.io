@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+<meta name="super-blog/config/environment" content="%7B%22modulePrefix%22%3A%22super-blog%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%2F%22%2C%22locationType%22%3A%22auto%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22super-blog%22%2C%22version%22%3A%220.0.0%2Bfe031535%22%7D%2C%22blog%22%3A%7B%22title%22%3A%22More%20Than%20Code%22%2C%22description%22%3A%22Blog%20by%20%40knownasilya%20about%20life%20and%20web%20development.%22%2C%22coverImage%22%3A%22%2Fimages%2Fblog-cover.jpg%22%2C%22navigation%22%3A%5B%7B%22label%22%3A%22Home%22%2C%22route%22%3A%22index%22%7D%2C%7B%22label%22%3A%22Github%22%2C%22link%22%3A%22https%3A%2F%2Fgithub.com%2Fknownasilya%22%7D%5D%2C%22host%22%3A%22https%3A%2F%2Filyaradchenko.com%22%7D%2C%22responsive-image%22%3A%7B%22sourceDir%22%3A%22images%22%2C%22destinationDir%22%3A%22responsive-images%22%2C%22quality%22%3A80%2C%22supportedWidths%22%3A%5B2000%2C1000%2C600%2C300%5D%2C%22removeSourceDir%22%3Afalse%2C%22justCopy%22%3Afalse%2C%22extensions%22%3A%5B%22jpg%22%2C%22jpeg%22%2C%22png%22%2C%22gif%22%5D%7D%2C%22ember-meta%22%3A%7B%22description%22%3A%22Blog%20by%20%40knownasilya%20about%20life%20and%20web%20development.%22%2C%22siteName%22%3A%22More%20Than%20Code%22%2C%22title%22%3A%22More%20Than%20Code%22%2C%22url%22%3A%22https%3A%2F%2Filyaradchenko.com%22%7D%2C%22fastboot%22%3A%7B%22hostWhitelist%22%3A%5B%7B%7D%5D%7D%2C%22exportApplicationGlobal%22%3Afalse%7D" />
+<!-- EMBER_CLI_FASTBOOT_TITLE -->  <meta name="ember-cli-head-start" content>  <title>More Than Code</title>
+
+  <meta name="description" content="Blog by @knownasilya about life and web development.">
+
+<meta name="referrer" content="unsafe-url">
+
+<!---->
+<!---->
+<!---->
+  <meta property="og:site_name" content="More Than Code">
+
+  <meta property="og:title" content="More Than Code">
+
+<!---->
+  <meta property="og:description" content="Blog by @knownasilya about life and web development.">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:image" content="https://ilyaradchenko.comundefined">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="256">
+  <meta property="og:image:height" content="256">
+
+<meta name="twitter:card" content="summary">
+
+<!---->
+  <meta name="twitter:image:src" content="https://ilyaradchenko.comundefined">
+
+  <meta name="twitter:title" content="More Than Code">
+
+<!---->
+  <meta name="twitter:description" content="Blog by @knownasilya about life and web development.">
+
+<!---->
+<!---->
+<!----><meta name="ember-cli-head-end" content>
+
+<link rel="alternate" type="application/rss+xml" title="More Than Code" href="https://ilyaradchenko.com/rss.xml" />
+
+    <link integrity="" rel="stylesheet" href="/assets/vendor-aaab47b18390cae2f38d5625343228e7.css">
+    <link integrity="" rel="stylesheet" href="/assets/super-blog-d41d8cd98f00b204e9800998ecf8427e.css">
+
+    <script id="ember_responsive_image_meta" type="application/json">
+{"advanced.jpg":{"images":[{"image":"/responsive-images/advanced2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/advanced1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/advanced600w.jpg","width":600,"height":400},{"image":"/responsive-images/advanced300w.jpg","width":300,"height":200}]},"blog-cover.jpg":{"images":[{"image":"/responsive-images/blog-cover2000w.jpg","width":2000,"height":667},{"image":"/responsive-images/blog-cover1000w.jpg","width":1000,"height":333},{"image":"/responsive-images/blog-cover600w.jpg","width":600,"height":200},{"image":"/responsive-images/blog-cover300w.jpg","width":300,"height":100}]},"built-by.jpg":{"images":[{"image":"/responsive-images/built-by2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/built-by1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/built-by600w.jpg","width":600,"height":400},{"image":"/responsive-images/built-by300w.jpg","width":300,"height":200}]},"chris.jpg":{"images":[{"image":"/responsive-images/chris2000w.jpg","width":2000,"height":2273},{"image":"/responsive-images/chris1000w.jpg","width":1000,"height":1136},{"image":"/responsive-images/chris600w.jpg","width":600,"height":682},{"image":"/responsive-images/chris300w.jpg","width":300,"height":341}]},"design.jpg":{"images":[{"image":"/responsive-images/design2000w.jpg","width":2000,"height":1504},{"image":"/responsive-images/design1000w.jpg","width":1000,"height":752},{"image":"/responsive-images/design600w.jpg","width":600,"height":451},{"image":"/responsive-images/design300w.jpg","width":300,"height":226}]},"ember.jpg":{"images":[{"image":"/responsive-images/ember2000w.jpg","width":2000,"height":1504},{"image":"/responsive-images/ember1000w.jpg","width":1000,"height":752},{"image":"/responsive-images/ember600w.jpg","width":600,"height":451},{"image":"/responsive-images/ember300w.jpg","width":300,"height":226}]},"ghost-icon.png":{"images":[{"image":"/responsive-images/ghost-icon2000w.png","width":2000,"height":2000},{"image":"/responsive-images/ghost-icon1000w.png","width":1000,"height":1000},{"image":"/responsive-images/ghost-icon600w.png","width":600,"height":600},{"image":"/responsive-images/ghost-icon300w.png","width":300,"height":300}]},"ilya.jpg":{"images":[{"image":"/responsive-images/ilya2000w.jpg","width":2000,"height":2083},{"image":"/responsive-images/ilya1000w.jpg","width":1000,"height":1042},{"image":"/responsive-images/ilya600w.jpg","width":600,"height":625},{"image":"/responsive-images/ilya300w.jpg","width":300,"height":313}]},"tags.jpg":{"images":[{"image":"/responsive-images/tags2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/tags1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/tags600w.jpg","width":600,"height":400},{"image":"/responsive-images/tags300w.jpg","width":300,"height":200}]},"team.jpg":{"images":[{"image":"/responsive-images/team2000w.jpg","width":2000,"height":1156},{"image":"/responsive-images/team1000w.jpg","width":1000,"height":578},{"image":"/responsive-images/team600w.jpg","width":600,"height":347},{"image":"/responsive-images/team300w.jpg","width":300,"height":173}]},"welcome.jpg":{"images":[{"image":"/responsive-images/welcome2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/welcome1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/welcome600w.jpg","width":600,"height":400},{"image":"/responsive-images/welcome300w.jpg","width":300,"height":200}]},"writing.jpg":{"images":[{"image":"/responsive-images/writing2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/writing1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/writing600w.jpg","width":600,"height":400},{"image":"/responsive-images/writing300w.jpg","width":300,"height":200}]}}
+</script>
+  </head>
+  <body  class="application index-template home-template index">
+    <script type="x/boundary" id="fastboot-body-start"></script><div class="ember-view" id="ember41"><!---->
+
+    <div class="site-wrapper">
+
+        
+<header id="ember43" class="site-header outer responsive-header-img ember-view">
+
+<style type="text/css">
+.responsive-header-img {
+    background-image: url(/images/blog-cover.jpg);
+}
+</style>
+ 
+    <div class="inner">
+        <div class="site-header-content">
+            <h1 class="site-title">
+                    More Than Code
+            </h1>
+            <h2 class="site-description">Blog by @knownasilya about life and web development.</h2>
+        </div>
+        <div id="ember44" class="ember-view"><nav class="site-nav">
+    <div class="site-nav-left">
+<!---->            <ul class="nav" role="menu">
+    <li class="nav-Home" role="menuitem">
+        <a href="/" id="ember47" class="active ember-view"> Home </a>
+    </li>
+    <li class="nav-Github" role="menuitem">
+        <a href="https://github.com/knownasilya"> Github </a>
+          </li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+<!----><!---->        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Filyaradchenko.com%2Frss.xml" target="_blank" rel="noopener"><div id="ember49" class="ember-view"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</div></a>
+            </div>
+</nav>
+</div>
+    </div>
+
+</header>
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <div class="post-feed">
+
+                <article class="post-card  no-image post-card-large">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/moved-back-to-michigan" id="ember51" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Moved Back To Michigan</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>Had a bunch of friends from Sojourn church come and help unload today, it was a blessing to us to have friends that really care. It's one of the reasons that we</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember53" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/running-component-css-and-css-modules-in-the-same-app" id="ember55" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Running Component CSS and CSS Modules in the Same App</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>With Ember Octane now released it's a good time to start looking at upgrading that app. One of the issues we faced at Crash with upgrading is that Ember Component CSS doesn'</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember56" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/one-reason-why-you-should-be-using-urls" id="ember58" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">One Reason Why You Should Be Using URLs</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>One of the reasons that Ember.js is so powerful of a framework is because of its Router, and ultimately its bet on the web and the fact that the URL is important.</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember59" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/using-nested-routes-in-ember" id="ember61" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Using Nested Routes In Ember.js</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>In my last post I mentioned how nested routes don't make sense sometimes, which means that they do have their uses at other times, which I want to cover here. I think</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember62" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/ember's-nested-routes-and-urls-explored" id="ember64" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Ember's Nested Routes and URLs Explored</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>Ember's router is powerful and a bit unique, in that it has a nested structure for the routes which build up the URL a user would see in the browser. Given it'</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember65" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/billing-and-finite-state-machines" id="ember67" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Billing and Finite State Machines</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>This week I've been coding up some billing workflows and it has been a while since I've done that, so naturally I underestimated the amount of work that is required for</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember68" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image post-card-large">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/fragmentation-over-obsalecence" id="ember70" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Fragmentation Over Obsolescence</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>Many people have written blog posts for #EmberJS2019 about where they want to see Ember headed in the next year or so. I'll add only one item of my own, since there</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember71" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/what-im-listening-to" id="ember73" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">resources</span>
+                <h2 class="post-card-title">What I'm Listening To</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>I've been listening to a few podcasts in several different categories and wanted to share some of those with you. Development EmberMap [https://embermap.com/podcast]  - An Ember.js focused podcast with</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember74" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/fomo" id="ember76" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">career</span>
+                <h2 class="post-card-title">Bad Habits and FOMO</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>I have to be honest, I've only picked up on this term about a year ago (maybe longer) and at that time I didn't have any connection with the idea. A</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember77" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/joining-crash" id="ember79" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">career</span>
+                <h2 class="post-card-title">Joining Crash</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>I'm excited to announce that in just over a week I'll be joining Crash [https://crash.co]  to build the vision of helping you show your value while starting/changing a</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember80" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/lessons-from-unfocused-side-projects" id="ember82" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Lessons From Unfocused Side Projects</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>Having worked on a few side-projects, and not having shipped any, I decided to analyze why that is and how to ship my next side-project. The problem for me is that</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember83" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">4 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/learning-something-about-myself" id="ember85" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">family</span>
+                <h2 class="post-card-title">Learning something about myself</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>This week has been a whirlwind of things, but the biggest of those is a decision to move back to the east coast. Coming to this decision has shown me, more clearly than</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember86" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image post-card-large">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/favorite-ember-addons" id="ember88" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Favorite Ember Addons</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>I decided to write down some of my favorite Ember.js addons that I have used in the past. There are a handful of addons marked with [bleeding edge], meaning they are either</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember89" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/ember-in-2018-and-beyond" id="ember91" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Ember In 2018 and Beyond</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>This post is in response to the Call for Blog Posts [https://emberjs.com/blog/2018/05/02/ember-2018-roadmap-call-for-posts.html]  put out there by the core team. Have</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember92" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">3 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/sharing-components-with-engines" id="ember94" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Sharing Components with Engines</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>Is this what I'm looking for? You have at least one engine and you want to share components from your parent app without having an in-repo-addon to share the common</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember95" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/quotes-project" id="ember97" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+<!---->                <h2 class="post-card-title">Quotes Project</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>Recently I've been reading more non-fiction, specifically Christian non-fiction writing. During my reading I've been encountering many uplifting and deep quotes from authors of the past as well as</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember98" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/data-down-actions-up" id="ember100" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Data Down, Actions Up</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>I hear many people asking how they can compose components, and since the Ember Guides [http://guides.emberjs.com/]  don't help us in that respect, I wrote my own guide as a</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember101" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">3 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image ">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/use-ember-cli" id="ember103" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ember.js</span>
+                <h2 class="post-card-title">Use Ember CLI</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>I've been using Ember.js since just before the first RC, and since then I've been wanting a sane project structure that just works. This was a struggle, since Ember told</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember104" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+
+                <article class="post-card  no-image post-card-large">
+
+<!---->
+    <div class="post-card-content">
+
+<a href="/hello" id="ember106" class="post-card-content-link ember-view">
+            <header class="post-card-header">
+                    <span class="post-card-tags">Introduction</span>
+                <h2 class="post-card-title">Hello</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>This is the first post, and hopefully not the last ;) I'm Ilya Radchenko, usually go by 'knownasilya', and this is my blog where I write about life and web development. I'm</p>
+            </section>
+
+</a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ilya Radchenko
+                    </div>
+
+<a href="/author/ilya" id="ember107" class="static-avatar ember-view">                            <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+</a>                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+
+        </div>
+
+    </div>
+</main>
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a>More Than Code</a> © 2020</section>
+                <nav class="site-footer-nav">
+                    <a href="/" id="ember108" class="active ember-view">Latest Posts</a>
+                    <!---->
+                    <!---->
+                    <a href="https://github.com/empress/empress-blog-casper-template" target="_blank" rel="noopener">empress-blog Casper Template</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+<!---->
+<!----></div><script type="x/boundary" id="fastboot-body-end"></script>
+
+    <script src="/assets/vendor-28d8f770f3f1795a0d5a06fc0bb705d1.js" integrity="sha256-HtMiKnauE36iG3gwBDF+e98NDNpN5cfPJKvBfvcoZyo= sha512-OwWsIPUSm6XSGf7SJKv2o3kzn8AuwtgzYXglRDvzMDxQqBQA5uZ8rfOOHhAR+veqV6IE65sjWs6q8PoTLCNSlw==" ></script>
+    <script src="/assets/super-blog-adac36f93cdb1b3a751e969bbeeff077.js" integrity="sha256-HHiZjIr+Xn7zJ+7fhfx3tEZI8W+XsuZAepKc6jYJlRA= sha512-9UmPI5BqRYszlNnqbQWrQ4vzAz4+Svj0Uv3T0tv6njkHaFi+BYsFuVKKQLr4Upfg+CFmRAi+6XraoTM9J40rmg==" ></script>
+
+    
+  </body>
+</html>

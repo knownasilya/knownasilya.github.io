@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+<meta name="super-blog/config/environment" content="%7B%22modulePrefix%22%3A%22super-blog%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%2F%22%2C%22locationType%22%3A%22auto%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22super-blog%22%2C%22version%22%3A%220.0.0%2Bfe031535%22%7D%2C%22blog%22%3A%7B%22title%22%3A%22More%20Than%20Code%22%2C%22description%22%3A%22Blog%20by%20%40knownasilya%20about%20life%20and%20web%20development.%22%2C%22coverImage%22%3A%22%2Fimages%2Fblog-cover.jpg%22%2C%22navigation%22%3A%5B%7B%22label%22%3A%22Home%22%2C%22route%22%3A%22index%22%7D%2C%7B%22label%22%3A%22Github%22%2C%22link%22%3A%22https%3A%2F%2Fgithub.com%2Fknownasilya%22%7D%5D%2C%22host%22%3A%22https%3A%2F%2Filyaradchenko.com%22%7D%2C%22responsive-image%22%3A%7B%22sourceDir%22%3A%22images%22%2C%22destinationDir%22%3A%22responsive-images%22%2C%22quality%22%3A80%2C%22supportedWidths%22%3A%5B2000%2C1000%2C600%2C300%5D%2C%22removeSourceDir%22%3Afalse%2C%22justCopy%22%3Afalse%2C%22extensions%22%3A%5B%22jpg%22%2C%22jpeg%22%2C%22png%22%2C%22gif%22%5D%7D%2C%22ember-meta%22%3A%7B%22description%22%3A%22Blog%20by%20%40knownasilya%20about%20life%20and%20web%20development.%22%2C%22siteName%22%3A%22More%20Than%20Code%22%2C%22title%22%3A%22More%20Than%20Code%22%2C%22url%22%3A%22https%3A%2F%2Filyaradchenko.com%22%7D%2C%22fastboot%22%3A%7B%22hostWhitelist%22%3A%5B%7B%7D%5D%7D%2C%22exportApplicationGlobal%22%3Afalse%7D" />
+<!-- EMBER_CLI_FASTBOOT_TITLE -->  <meta name="ember-cli-head-start" content>  <title>Lessons From Unfocused Side Projects</title>
+
+  <meta name="description" content="Having worked on a few side-projects, and not having shipped any, I decided to analyze why that is and how to ship my next side-project. The problem for me is that...">
+
+<meta name="referrer" content="unsafe-url">
+
+  <link rel="canonical" href="https://ilyaradchenko.com/lessons-from-unfocused-side-projects/">
+
+  <meta property="article:published_time" content="Sun Jan 13 2019 22:35:36 GMT+0000 (Coordinated Universal Time)">
+
+  <meta property="article:tag" content="ember.js">
+  <meta property="article:tag" content="side-projects">
+  <meta property="article:tag" content="lessons">
+  <meta property="article:tag" content="focused">
+
+  <meta property="og:site_name" content="More Than Code">
+
+  <meta property="og:title" content="Lessons From Unfocused Side Projects">
+
+  <meta property="og:url" content="https://ilyaradchenko.com/lessons-from-unfocused-side-projects/">
+
+  <meta property="og:description" content="Having worked on a few side-projects, and not having shipped any, I decided to analyze why that is and how to ship my next side-project. The problem for me is that...">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:image" content="https://ilyaradchenko.comundefined">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="256">
+  <meta property="og:image:height" content="256">
+
+<meta name="twitter:card" content="summary">
+
+<!---->
+  <meta name="twitter:image:src" content="https://ilyaradchenko.comundefined">
+
+  <meta name="twitter:title" content="Lessons From Unfocused Side Projects">
+
+  <meta name="twitter:url" content="https://ilyaradchenko.com/lessons-from-unfocused-side-projects/">
+
+  <meta name="twitter:description" content="Having worked on a few side-projects, and not having shipped any, I decided to analyze why that is and how to ship my next side-project. The problem for me is that...">
+
+  <meta name="twitter:label1" content="Written by">
+  <meta name="twitter:data1" content="Ilya Radchenko">
+
+  <meta name="twitter:label2" content="Filed under">
+  <meta name="twitter:data2" content="ember.js, side-projects, lessons, focused">
+
+<!----><meta name="ember-cli-head-end" content>
+
+<link rel="alternate" type="application/rss+xml" title="More Than Code" href="https://ilyaradchenko.com/rss.xml" />
+
+    <link integrity="" rel="stylesheet" href="/assets/vendor-aaab47b18390cae2f38d5625343228e7.css">
+    <link integrity="" rel="stylesheet" href="/assets/super-blog-d41d8cd98f00b204e9800998ecf8427e.css">
+
+    <script id="ember_responsive_image_meta" type="application/json">
+{"advanced.jpg":{"images":[{"image":"/responsive-images/advanced2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/advanced1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/advanced600w.jpg","width":600,"height":400},{"image":"/responsive-images/advanced300w.jpg","width":300,"height":200}]},"blog-cover.jpg":{"images":[{"image":"/responsive-images/blog-cover2000w.jpg","width":2000,"height":667},{"image":"/responsive-images/blog-cover1000w.jpg","width":1000,"height":333},{"image":"/responsive-images/blog-cover600w.jpg","width":600,"height":200},{"image":"/responsive-images/blog-cover300w.jpg","width":300,"height":100}]},"built-by.jpg":{"images":[{"image":"/responsive-images/built-by2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/built-by1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/built-by600w.jpg","width":600,"height":400},{"image":"/responsive-images/built-by300w.jpg","width":300,"height":200}]},"chris.jpg":{"images":[{"image":"/responsive-images/chris2000w.jpg","width":2000,"height":2273},{"image":"/responsive-images/chris1000w.jpg","width":1000,"height":1136},{"image":"/responsive-images/chris600w.jpg","width":600,"height":682},{"image":"/responsive-images/chris300w.jpg","width":300,"height":341}]},"design.jpg":{"images":[{"image":"/responsive-images/design2000w.jpg","width":2000,"height":1504},{"image":"/responsive-images/design1000w.jpg","width":1000,"height":752},{"image":"/responsive-images/design600w.jpg","width":600,"height":451},{"image":"/responsive-images/design300w.jpg","width":300,"height":226}]},"ember.jpg":{"images":[{"image":"/responsive-images/ember2000w.jpg","width":2000,"height":1504},{"image":"/responsive-images/ember1000w.jpg","width":1000,"height":752},{"image":"/responsive-images/ember600w.jpg","width":600,"height":451},{"image":"/responsive-images/ember300w.jpg","width":300,"height":226}]},"ghost-icon.png":{"images":[{"image":"/responsive-images/ghost-icon2000w.png","width":2000,"height":2000},{"image":"/responsive-images/ghost-icon1000w.png","width":1000,"height":1000},{"image":"/responsive-images/ghost-icon600w.png","width":600,"height":600},{"image":"/responsive-images/ghost-icon300w.png","width":300,"height":300}]},"ilya.jpg":{"images":[{"image":"/responsive-images/ilya2000w.jpg","width":2000,"height":2083},{"image":"/responsive-images/ilya1000w.jpg","width":1000,"height":1042},{"image":"/responsive-images/ilya600w.jpg","width":600,"height":625},{"image":"/responsive-images/ilya300w.jpg","width":300,"height":313}]},"tags.jpg":{"images":[{"image":"/responsive-images/tags2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/tags1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/tags600w.jpg","width":600,"height":400},{"image":"/responsive-images/tags300w.jpg","width":300,"height":200}]},"team.jpg":{"images":[{"image":"/responsive-images/team2000w.jpg","width":2000,"height":1156},{"image":"/responsive-images/team1000w.jpg","width":1000,"height":578},{"image":"/responsive-images/team600w.jpg","width":600,"height":347},{"image":"/responsive-images/team300w.jpg","width":300,"height":173}]},"welcome.jpg":{"images":[{"image":"/responsive-images/welcome2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/welcome1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/welcome600w.jpg","width":600,"height":400},{"image":"/responsive-images/welcome300w.jpg","width":300,"height":200}]},"writing.jpg":{"images":[{"image":"/responsive-images/writing2000w.jpg","width":2000,"height":1333},{"image":"/responsive-images/writing1000w.jpg","width":1000,"height":667},{"image":"/responsive-images/writing600w.jpg","width":600,"height":400},{"image":"/responsive-images/writing300w.jpg","width":300,"height":200}]}}
+</script>
+  </head>
+  <body  class="application post-template post">
+    <script type="x/boundary" id="fastboot-body-start"></script><div class="ember-view" id="ember411"><!---->
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <div id="ember413" class="ember-view"><nav class="site-nav">
+    <div class="site-nav-left">
+                <a href="/" id="ember414" class="site-nav-logo ember-view">More Than Code</a>
+            <ul class="nav" role="menu">
+    <li class="nav-Home" role="menuitem">
+        <a href="/" id="ember416" class="ember-view"> Home </a>
+    </li>
+    <li class="nav-Github" role="menuitem">
+        <a href="https://github.com/knownasilya"> Github </a>
+          </li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+<!----><!---->        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Filyaradchenko.com%2Frss.xml" target="_blank" rel="noopener"><div id="ember417" class="ember-view"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</div></a>
+            </div>
+</nav>
+</div>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full  no-image">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2019-01-13">13 January 2019</time>
+                        <span class="date-divider">/</span> <a href="/tag/ember-js" id="ember418" class="ember-view">ember.js</a>
+                </section>
+                <h1 class="post-full-title">Lessons From Unfocused Side Projects</h1>
+            </header>
+
+<!---->
+            <section class="post-full-content">
+                <div class="post-content">
+                    <p>Having worked on a few side-projects, and not having shipped any, I decided to
+analyze why that is and how to ship my next side-project. The problem for me is
+that I get excited and start putting in lots of work at the start and slowly get
+tired and move on to the next interesting idea that I have. Then it eats away at
+me in the back of my mind, because I wasn't able to finish the project.</p>
+<p>With my current project [https://github.com/loaves-and-fishes/community-groups],
+I decided to change things, because doing the same thing, hoping for different
+results is literally the definition of insanity. I've had this project idea on
+my mind for the last several years and it has grown in scope over that time. I
+hope to ship this project, so I have primarily written this for myself. Having
+said that, I do hope that it also helps you in your side-project journey.</p>
+<p>Do Only One Project
+If things were going to be different, I'd have to forget about all other
+projects on my backlog, and be focused on this single project. This means no
+going after any new shiny ideas, or resurrecting old projects. All other
+projects are on hold while the current one is active. This will help my mind and
+my time to be focused.</p>
+<p>Make It Manageable
+My idea started out small, but has grown over the last few years. If I was to
+tackle that whole idea as my side project, I'd be completely overwhelmed. So
+instead I've segmented my idea into 3 parts, and chose one of those parts.</p>
+<p>Even one of the parts is big enough to overwhelm. Now it's time to trim down and
+see what is the smallest app that I can ship that would be a useful tool for my
+audience. This step is important, because products always have more work than
+you expect.</p>
+<p>Keep Experimentation Minimal
+Every time I start a new project, I want to try some new tech. Usually this
+keeps compounding because I try to experiment with multiple areas of the app.
+For example, my main expertise is in Ember.js [https://emberjs.com/], but I
+wanted to try Polymer for a side project. I realized pretty quickly that I
+should not experiment at such a big level, because I don't know the tech and
+will spend more time learning then building my app.</p>
+<p>For my current side project, I decided to experiment with functional/utility
+CSS, i.e. TailwindCSS [https://tailwindcss.com]. This has worked out well so
+far. It lets me move fast and not have to go all in if I don't want to. Plus the
+core is still CSS, so I'm not learning something huge.</p>
+<p>Gate Keep Scope Creep
+As I build the app, I will see small issues that could be addressed to help the
+experience. These small fixes or enhancements will only grow the size of my
+project, growing the distance from where I am to where I need to be to ship this
+project. My goal is to ship something, after that I can reevaluate.</p>
+<p>For example, while building a members list I saw an opportunity to add a
+multiple tab UI to help distinguish/filter members that were pending on
+invitation. This is probably something that will eventually make it in, but at
+this time it's only distracting from shipping my first version. It's better if
+the users driver that development, or once the app is established.</p>
+<p>Set Personal Checkpoints
+It's very easy to lose track of when I last worked on my side project,
+especially I didn't record anything or set any expectations. All of a sudden a
+year has gone by and I have little to show for it. The first step is to set an
+internal deadline that I will try to reach. The second step is to split up
+chunks of work into checkpoints of sorts. With this kind of setup I'll have an
+end in sight and stepping stones that will help me track your progress.</p>
+<p>I'm going to start doing that by using the "Projects" feature in Github. This
+doesn't introduce any new tools to my workflow, which I think is important to
+keep the overhead small.</p>
+<p>Work In Public
+When no one knows what I'm up too, it's easy to just give up or move on to the
+next big thing. Once I'm accountable, things change, because I've involved
+others. It's a form of internal motivation, as well as external. For programming
+side-projects this usually starts as working in public with an open repository
+right from the beginning. I can also choose to share my work on social media
+(like Twitter) or record/stream videos on services like YouTube or Twitch.</p>
+<p>For my project I'm recording videos on YouTube (here
+[https://www.youtube.com/watch?v=EXvT4bUZqHg&amp;list=PLfQwL10yab39zHh-4Ub-u9IqwS5C0yHsE]
+) and posting on Twitter. I also have it public on Github (here
+[https://github.com/loaves-and-fishes/community-groups]). Beyond that, I also
+included it in a blog post (this one).</p>
+<p>Ship It
+This might sounds silly, but this is probably the biggest step to have a focused
+side-project. If I never ship my side-project, then I don't really know if I
+enjoy the full process. Plus preparing my project for shipping is much more
+involved then I might realize, and if it's skipped, I miss a big portion of the
+full process. After shipping, I can decide if the project is finished, or if I
+want to continue.</p>
+<p>If I've been working in public, then I will probably have at least a small
+audience, and have some potential users. Shipping will bring on new eyes and
+feedback. Maybe I'll have clients or maybe learn that the project was a good
+exercise and nothing more. Even if I end it here, I'll have gone to the end, and
+now have a portfolio item, and the experience that I've gained.</p>
+<p>Summarize Your Learnings
+Now that I've shipped (and maybe iterated a bit more), it is important that I
+sit down and write my thoughts out regarding this process. What did I enjoy or
+maybe not like one bit? Were there struggles along the way, what were they? Will
+I build something like this again? Was it worth it? I should write this down and
+maybe share it in a blog post (that's up to me). Next time I decide to start a
+new side-project, or maybe consider investing more time into this one, I'll at
+least have some idea of what I enjoy building and my strengths and weaknesses.
+I'll know where to spend more time to improve or what areas to avoid
+all-together.</p>
+<p>By finishing a side-project, I'll grow and learn about myself. But &nbsp;I must also
+remember, sometimes an idea just doesn't work out or I might learn early on that
+it's not right for me. In a situation like this, I shouldn't feel guilt/shame
+for not finishing the project. Make a clear break, write down my learnings, and
+move on.</p>
+
+                </div>
+            </section>
+
+<!---->
+            <footer class="post-full-footer">
+
+
+                    <section class="author-card">
+        <img class="author-profile-image" src="//www.gravatar.com/avatar/bb3f3a4ce9ffe81506c2096c75c64517?s=250&amp;d=mm&amp;r=x" alt="Ilya Radchenko">
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="/author/ilya" id="ember419" class="ember-view">Ilya Radchenko</a></h4>
+            <p>Read <a href="/author/ilya" id="ember420" class="ember-view">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a href="/author/ilya" id="ember421" class="author-card-button ember-view">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+<!---->
+<!---->
+<!---->
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header ">
+    <div class="floating-header-logo">
+<a href="/" id="ember422" class="ember-view"><!---->            <span>More Than Code</span>
+</a>    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">Lessons From Unfocused Side Projects</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <div id="ember423" class="ember-view"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div></div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Lessons%20From%20Unfocused%20Side%20Projects&amp;url=undefined" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <div id="ember424" class="ember-view"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+</div>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=undefined" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <div id="ember425" class="ember-view"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+</div>
+        </a>
+    </div>
+    <progress id="reading-progress" class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a>More Than Code</a> © 2020</section>
+                <nav class="site-footer-nav">
+                    <a href="/" id="ember426" class="ember-view">Latest Posts</a>
+                    <!---->
+                    <!---->
+                    <a href="https://github.com/empress/empress-blog-casper-template" target="_blank" rel="noopener">empress-blog Casper Template</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+<!---->
+<!----></div><script type="x/boundary" id="fastboot-body-end"></script>
+
+    <script src="/assets/vendor-28d8f770f3f1795a0d5a06fc0bb705d1.js"></script>
+    <script src="/assets/super-blog-adac36f93cdb1b3a751e969bbeeff077.js"></script>
+
+    
+  </body>
+</html>
