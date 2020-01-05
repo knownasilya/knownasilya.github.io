@@ -3,7 +3,7 @@ title: 'Moved Back To Michigan'
 # image: ''
 authors:
   - ilya
-date: '2020-01-05T03:59:04.152Z'
+date: '2020-01-05T03:59:24.224Z'
 tags:
   - ember-js
 ---
