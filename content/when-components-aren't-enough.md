@@ -13,7 +13,7 @@ Sometimes components are too high-level, and you need to get at a specific DOM e
 
 ```hbs
 <form {{autofocus}}>
-<input />
+  <input />
 </form>
 ```
 
@@ -21,6 +21,7 @@ Which will focus the first non-disabled input that it finds (from [ember-autofoc
 
 ```hbs
 <div {{scroll-to}}>
+  Some content here
 </div>
 ```
 
@@ -31,9 +32,9 @@ Which will scroll to the element once it's in the DOM, and is super easy to impl
 import { modifier } from 'ember-modifier';
 
 export default modifier((element) => {
-element.scrollIntoView({
-behavior: 'smooth'
-});
+  element.scrollIntoView({
+    behavior: 'smooth'
+  });
 });
 ```
 
@@ -41,7 +42,7 @@ There is also the `ref` modifier from [ember-ref-modifier](https://www.npmjs.com
 
 ```hbs
 <button {{ref this "button"}} data-name="foo">
-Click me baby, one more time!
+  Click me baby, one more time!
 </button>
 
 {{this.button.dataset.name}} >> "foo"
@@ -51,7 +52,7 @@ Along with `{{on-click-outside}}` from [ember-click-outside](https://github.com/
 
 ```hbs
 <div {{on-click-outside @close}}>
-Your HTML...
+  Your HTML...
 </div>
 ```
 
@@ -61,12 +62,12 @@ Mainly because you can do things like:
 
 ```hbs
 {{#if this.isEditorVisible}}
-<div
-class="wysiwig-editor"
-{{did-insert this.setupEditor}}
-{{will-destroy this.teardownEditor}}
->
-</div>
+  <div
+    class="wysiwig-editor"
+    {{did-insert this.setupEditor}}
+    {{will-destroy this.teardownEditor}}
+  >
+  </div>
 {{/if}}
 ```
 
