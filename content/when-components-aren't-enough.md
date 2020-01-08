@@ -1,5 +1,5 @@
 ---
-title: 'When Components Aren't Enough'
+title: 'When Components Aren''t Enough'
 # image: ''
 authors:
   - ilya
