@@ -13,9 +13,9 @@ For instance, take this example code on the Handlebars.js website:
 
 ```hbs
 <ul class="people_list">
-{{#each people}}
-  <li>{{this}}</li>
-{{/each}}
+  {{#each people}}
+    <li>{{this}}</li>
+  {{/each}}
 </ul>
 ```
 
@@ -23,9 +23,9 @@ In Ember this would be written as
 
 ```hbs
 <ul class="people_list">
-{{#each this.people as |person|}}
-  <li>{{person}}</li>
-{{/each}}
+  {{#each this.people as |person|}}
+    <li>{{person}}</li>
+  {{/each}}
 </ul>
 ```
 
@@ -36,7 +36,7 @@ Another example of Handlebars.js syntax:
 
 ```hbs
 {{#with person}}
-{{firstname}} {{lastname}}
+  {{firstname}} {{lastname}}
 {{/with}}
 ```
 
