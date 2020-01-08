@@ -1,13 +1,13 @@
 ---
-    title: 'Ember's Templating Is Far From Handlebars.js'
-    # image: ''
-    authors:
-      - ilya
-    date: '2020-01-08T21:38:06.721Z'
-    tags:
-      - ember-js
-    ---
-    I've heard this so many times on Twitter, that someone doesn't want to try out Ember because of a bad experience with Handlebars.js. Let me tell you something, the handlebars that is in Ember is far divergent from the normal Handlebars.js. Both projects have their uses, but don't judge one by the other.
+title: 'Ember''s Templating Is Far From Handlebars.js'
+# image: ''
+authors:
+  - ilya
+date: '2020-01-08T21:38:06.721Z'
+tags:
+  - ember-js
+---
+I've heard this so many times on Twitter, that someone doesn't want to try out Ember because of a bad experience with Handlebars.js. Let me tell you something, the handlebars that is in Ember is far divergent from the normal Handlebars.js. Both projects have their uses, but don't judge one by the other.
 
 For instance, take this example code on the Handlebars.js website:
 
