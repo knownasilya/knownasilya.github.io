@@ -1,13 +1,13 @@
 ---
-title: 'When Components Aren''t Enough'
-# image: ''
-authors:
-  - ilya
-date: '2020-01-08T04:17:41.451Z'
-tags:
-  - ember-js
----
-Sometimes components are too high-level, and you need to get at a specific DOM element, either for `scrollTo` or `focus`, in these situations Ember provides a lower-level primitive called an element-modifier. To get started with element modifiers you can check out existing modifiers at [EmberObserver](https://emberobserver.com/categories/modifiers) or create your own using the `ember-modifier` [library](https://github.com/ember-modifier/ember-modifier).
+    title: 'When Components Aren't Enough'
+    # image: ''
+    authors:
+      - ilya
+    date: '2020-01-08T04:20:48.120Z'
+    tags:
+      - ember-js
+    ---
+    Sometimes components are too high-level, and you need to get at a specific DOM element, either for `scrollTo` or `focus`, in these situations Ember provides a lower-level primitive called an element-modifier. To get started with element modifiers you can check out existing modifiers at [EmberObserver](https://emberobserver.com/categories/modifiers) or create your own using the `ember-modifier` [library](https://github.com/ember-modifier/ember-modifier).
 
 ## Some Examples
 
@@ -32,7 +32,7 @@ import { modifier } from 'ember-modifier';
 
 export default modifier((element) => {
 element.scrollIntoView({
-  behavior: 'smooth'
+behavior: 'smooth'
 });
 });
 ```
@@ -62,9 +62,9 @@ Mainly because you can do things like:
 ```hbs
 {{#if this.isEditorVisible}}
 <div
-  class="wysiwig-editor"
-  {{did-insert this.setupEditor}}
-  {{will-destroy this.teardownEditor}}
+class="wysiwig-editor"
+{{did-insert this.setupEditor}}
+{{will-destroy this.teardownEditor}}
 >
 </div>
 {{/if}}
