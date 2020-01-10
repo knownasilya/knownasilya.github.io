@@ -1,9 +1,10 @@
 ---
 title: >
   6 Tips For Transitioning To Ember CSS Modules
+
 authors:
   - ilya
-date: '2020-01-10T18:17:52.731Z'
+date: '2020-01-10T18:44:32.141Z'
 tags:
   - ember-js
 ---
@@ -67,4 +68,5 @@ You must include selectors like `h1, a, p` inside of a class in your style file,
 This is because the style file doesn't get its own namespace, only the classes (and IDs) inside the file are renamed.
 
 
+    
     
