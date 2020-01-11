@@ -34,6 +34,9 @@ module.exports = function(environment) {
       }, {
         label: 'Github',
         link: 'https://github.com/knownasilya'
+      }, {
+        label: 'Sponsor Me',
+        link: 'https://github.com/sponsors/knownasilya'
       }]
     },
 
