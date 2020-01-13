@@ -4,7 +4,7 @@ title: >
 
 authors:
   - ilya
-date: '2020-01-13T15:56:32.988Z'
+date: '2020-01-13T16:04:38.269Z'
 tags:
   - ember-js
 ---
@@ -26,5 +26,6 @@ It's fine that I can create big queries, but sometimes I want to optimize a UI t
 ## Still Love GraphQL
 
 While I'm unsure if Apollo is the best implementation (I want URQL for Ember), I do still love GraphQL. I would love to see Ember Data work with GraphQL one day.
+    
     
     
