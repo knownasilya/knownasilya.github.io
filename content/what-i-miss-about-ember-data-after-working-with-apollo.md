@@ -1,9 +1,10 @@
 ---
 title: >
   What I Miss About Ember Data After Working With Apollo
+
 authors:
   - ilya
-date: '2020-01-11T03:12:07.951Z'
+date: '2020-01-13T15:56:32.988Z'
 tags:
   - ember-js
 ---
@@ -21,4 +22,9 @@ In Ember Data you could store derived state on the model as computed properties,
 ## Async Relationships
 
 It's fine that I can create big queries, but sometimes I want to optimize a UI to load smoother and only load additional data after the fact, this isn't really possible, since you just have to write another query. Sure the query is probably off the main type, but there is no way to say `await user.loadProfile()` or something of that nature. Most people write big queries to get all they need, but this just doesn't feel right for many cases.
+
+## Still Love GraphQL
+
+While I'm unsure if Apollo is the best implementation (I want URQL for Ember), I do still love GraphQL. I would love to see Ember Data work with GraphQL one day.
+    
     
