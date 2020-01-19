@@ -1,9 +1,10 @@
 ---
 title: >
   I Needed A State Machine This Week
+
 authors:
   - ilya
-date: '2020-01-19T04:20:12.304Z'
+date: '2020-01-19T04:20:30.184Z'
 tags:
   - ember-js
 ---
@@ -14,4 +15,5 @@ if the video was in a processing state on the server. This was not simple, becau
 Even now I am sure there are some bugs in the implementation that I wrote.
 
 The XState website has a [visualizer](https://xstate.js.org/viz/) which by default shows some scenario that I've just described. Just visualizing the logic gives me a clearer idea of what I should have done, and if I did implement it in a state machine, I wouldn't have any invalid states because it's impossible to get into them (as long as the logic is sound). I think XState will be the next library that I add to my side-project so that I can give it a go before proposing to add it to our tech stack at Crash.
+    
     
