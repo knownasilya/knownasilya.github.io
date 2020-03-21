@@ -4,7 +4,7 @@ title: >
 
 authors:
   - ilya
-date: '2020-03-21T19:38:59.050Z'
+date: '2020-03-21T19:45:35.753Z'
 tags: 
   - ember.js
 ---
@@ -12,8 +12,38 @@ Most Ember developers are familiar with Ember Data and JSON:API, which means tha
 
 By the way I'll be posting from the perspective of working with GraphQL on the client mainly, and using [ember-apollo-client](https://github.com/ember-graphql/ember-apollo-client).
 
-## What I Miss
+## What I Missed Most
 
-First of all, I miss having a model class for each entity as I'd have with Ember Data before hand.
+First of all, I miss having a model class for each entity as I'd have with Ember Data before hand. This becomes obvious once you have a single entity type that you use all over your app, and in my case this was the repeated use of `{{this.user.firstName}} {{this.user.lastName}}` instead of `{{this.user.name}}`. This is not as fun to work with, and you end up repeating yourself manytimes for a value that should be derived.
+
+Fortunately there is a solution, and it's called client resolvers. I didn't end up using them, since I learned about them a bit late, but they go something like this:
+
+```js
+export default class OverriddenApolloService extends ApolloService {
+  clientOptions() {
+    return {
+      link: this.link(),
+      cache: this.cache(),
+      resolvers: {
+        User: {
+          name: (parent, args, obj) => {
+            return obj.firstName + ' ' + obj.lastName;
+          }
+        }
+      },
+      typeDefs: types // If you need to extend somethings
+    };
+  }
+```
+
+And can be queried using 
+
+```graphql
+query CurrentUser {
+  user {
+    name @client
+  }
+}
+```
     
     
