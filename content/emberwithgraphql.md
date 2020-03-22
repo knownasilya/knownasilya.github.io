@@ -4,7 +4,7 @@ title: >
 
 authors:
   - ilya
-date: '2020-03-22T20:24:48.916Z'
+date: '2020-03-22T20:39:41.624Z'
 tags: 
   - ember-js
 ---
@@ -63,24 +63,22 @@ export default class PublishProfileComponent extends Component {
   publish = function*() {
     let slug = this.args.profile.slug;
 
-    yield this.apollo.mutate(
-      {
-        mutation: updateProfile,
-        variables: {
-          input: {
-            slug,
-            publishedAt: new Date()
-          }
+    yield this.apollo.mutate({
+      mutation: updateProfile,
+      variables: {
+        input: {
+          slug,
+          publishedAt: new Date()
         }
-      },
-      'updateProfile'
-    );
+      }
+    }, 'updateProfile');
 }
 ```
 
 Which could be solved by having a model with common tasks on it, but that is more boiler plate on top of course. Also in the example above you could have `saveProfile`, `publishProfile`, etc. there are no conventions/enforcement on how you should structure your mutations and queries. I miss the conventions of JSON:API.
     
 ## 
+    
     
     
     
