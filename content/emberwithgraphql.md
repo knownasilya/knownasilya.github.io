@@ -4,7 +4,7 @@ title: >
 
 authors:
   - ilya
-date: '2020-03-22T18:54:58.670Z'
+date: '2020-03-22T19:21:19.037Z'
 tags: 
   - ember-js
 ---
@@ -16,7 +16,7 @@ By the way I'll be posting from the perspective of working with GraphQL on the c
 
 First of all, I miss having a model class for each entity as I'd have with Ember Data before hand. This becomes obvious once you have a single entity type that you use all over your app, and in my case this was the repeated use of `{{this.user.firstName}} {{this.user.lastName}}` instead of `{{this.user.name}}`. This is not as fun to work with, and you end up repeating yourself manytimes for a value that should be derived.
 
-Fortunately there is a solution, and it's called client resolvers. I didn't end up using them, since I learned about them a bit late, but they go something like this:
+Fortunately there is a solution of sorts; it's called client resolvers. I didn't end up using them, since I learned about them a bit late, but they go something like this:
 
 ```js
 export default class OverriddenApolloService extends ApolloService {
@@ -35,7 +35,7 @@ export default class OverriddenApolloService extends ApolloService {
   }
 ```
 
-And can be queried using the `@client` modifier.
+And can be queried using the `@client` directive.
 
 ```graphql
 query CurrentUser {
