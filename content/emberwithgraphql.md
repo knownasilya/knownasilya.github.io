@@ -4,7 +4,7 @@ title: >
 
 authors:
   - ilya
-date: '2020-03-22T20:39:41.624Z'
+date: '2020-03-22T20:52:20.092Z'
 tags: 
   - ember-js
 ---
@@ -22,8 +22,7 @@ Fortunately there is a solution of sorts; it's called client resolvers. I didn't
 export default class OverriddenApolloService extends ApolloService {
   clientOptions() {
     return {
-      link: this.link(),
-      cache: this.cache(),
+      ...super.clientOptions(...arguments),
       resolvers: {
         User: {
           name: (parent, args, obj) => {
@@ -33,6 +32,7 @@ export default class OverriddenApolloService extends ApolloService {
       }
     };
   }
+}
 ```
 
 And can be queried using the `@client` directive.
