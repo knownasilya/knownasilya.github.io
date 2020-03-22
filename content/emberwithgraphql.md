@@ -4,7 +4,7 @@ title: >
 
 authors:
   - ilya
-date: '2020-03-21T19:45:35.753Z'
+date: '2020-03-22T18:48:17.489Z'
 tags: 
   - ember-js
 ---
@@ -27,11 +27,10 @@ export default class OverriddenApolloService extends ApolloService {
       resolvers: {
         User: {
           name: (parent, args, obj) => {
-            return obj.firstName + ' ' + obj.lastName;
+            return parent.firstName + ' ' + parent.lastName;
           }
         }
-      },
-      typeDefs: types // If you need to extend somethings
+      }
     };
   }
 ```
@@ -41,9 +40,12 @@ And can be queried using
 ```graphql
 query CurrentUser {
   user {
+    id
     name @client
   }
 }
 ```
     
+    
+
     
