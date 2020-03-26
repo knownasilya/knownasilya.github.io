@@ -4,13 +4,43 @@ title: >
 
 authors:
   - ilya
-date: '2020-03-22T20:52:20.092Z'
+date: '2020-03-26T20:42:37.534Z'
 tags: 
   - ember-js
 ---
 Most Ember developers are familiar with Ember Data and JSON:API, which means that GraphQL and Apollo are not nearly as wide spread in the Ember community. This past year I had the chance to work on an app with GraphQL and Apollo in an Ember app, and I wanted to share some of the things I learned.
 
 By the way I'll be posting from the perspective of working with GraphQL on the client mainly, and using [ember-apollo-client](https://github.com/ember-graphql/ember-apollo-client).
+
+## What It Looks Like
+
+You can use Apollo by importing .graphql file with a mutation or a query, which gets used via the `queryManager`.
+
+```js
+import Component from '@glimmer/component';
+import { task } from 'ember-concurrency-decorators';
+import { queryManager } from 'ember-apollo-client';
+import updateProfile from './update-profile.graphql';
+
+export default class PublishProfileComponent extends Component {
+  @queryManager apollo;
+
+  @task
+  publish = function*() {
+    let slug = this.args.profile.slug;
+
+    yield this.apollo.mutate({
+      mutation: updateProfile,
+      variables: {
+        input: {
+          slug,
+          publishedAt: new Date()
+        }
+      }
+    }, 'updateProfile');
+  }
+}
+```
 
 ## What I Missed Most
 
@@ -49,35 +79,12 @@ query CurrentUser {
 This is probably sufficient for most of what I miss, but if you need more, like actions based on entities, you could define a custom class with `@tracked` properties and `@action` methods to handle that scenario. I think this could be done automatically using a map of types to classes and a custom Apollo Link "middleware".
 
 One minor thing I miss is being able to query without much ceremony. Since there are no models, you don't have `await model.save()`, instead you need to import a mutation, and pass the update RPC style.
-
-```js
-import Component from '@glimmer/component';
-import { task } from 'ember-concurrency-decorators';
-import { queryManager } from 'ember-apollo-client';
-import updateProfile from './update-profile.graphql';
-
-export default class PublishProfileComponent extends Component {
-  @queryManager apollo;
-
-  @task
-  publish = function*() {
-    let slug = this.args.profile.slug;
-
-    yield this.apollo.mutate({
-      mutation: updateProfile,
-      variables: {
-        input: {
-          slug,
-          publishedAt: new Date()
-        }
-      }
-    }, 'updateProfile');
-}
-```
-
-Which could be solved by having a model with common tasks on it, but that is more boiler plate on top of course. Also in the example above you could have `saveProfile`, `publishProfile`, etc. there are no conventions/enforcement on how you should structure your mutations and queries. I miss the conventions of JSON:API.
+Which could be solved by having a model with common tasks on it, but that is more boilerplate on top of course. Also in the example in the "What It Looks Like" section, you could have `saveProfile`, `publishProfile`, etc. there are no conventions/enforcement on how you should structure your mutations and queries. I miss the conventions of JSON:API.
     
-## 
+## What Was Gained
+
+The RPC nature of GraphQL gives you the power to create any kind of query or mutation, which is much harder with Ember Data. In the past I'd have used [ember-data-model-fragments](https://github.com/lytics/ember-data-model-fragments) and [ember-api-actions](https://github.com/mike-north/ember-api-actions) addons to get the nesting and arbitrary endpoints.
+    
     
     
     
