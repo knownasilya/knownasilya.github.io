@@ -4,7 +4,7 @@ title: >
 
 authors:
   - ilya
-date: '2020-03-26T20:42:37.534Z'
+date: '2020-03-26T21:39:40.003Z'
 tags: 
   - ember-js
 ---
@@ -83,7 +83,9 @@ Which could be solved by having a model with common tasks on it, but that is mor
     
 ## What Was Gained
 
-The RPC nature of GraphQL gives you the power to create any kind of query or mutation, which is much harder with Ember Data. In the past I'd have used [ember-data-model-fragments](https://github.com/lytics/ember-data-model-fragments) and [ember-api-actions](https://github.com/mike-north/ember-api-actions) addons to get the nesting and arbitrary endpoints.
+The RPC nature of GraphQL gives you the power to create any kind of query or mutation, which is much harder with Ember Data. In the past I've used [ember-data-model-fragments](https://github.com/lytics/ember-data-model-fragments) and [ember-api-actions](https://github.com/mike-north/ember-api-actions) addons to get the nesting and arbitrary endpoints. Since relationships are defined so easily, it also lowers the cognitive overhead necessary when requesting new data in you app. Plus you get the added benefit of defining less requests throughout, which is some what of a mental shift, because normally you don't group all the data into one request for a single "page".
+
+With the nature of GraphQL having a schema, it also allows you to have a sort of typed contract between your frontend and backend. This also comes into play when writing acceptance tests without a backend. We did this by using Mirage, and writing some glue code to sync the schema to the defined test resolvers (the things that return the data or perform a mutation). If we use a query/mutation in our tests, but haven't defined a corresponding test resolver, we get a failing test.
     
     
     
