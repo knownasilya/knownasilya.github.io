@@ -1,17 +1,18 @@
 ---
-title: 'When Components Aren''t Enough'
+title: "When Components Aren't Enough"
 # image: ''
 authors:
   - ilya
-date: '2020-01-08T04:20:48.120Z'
+date: "2020-01-08T04:20:48.120Z"
 tags:
   - ember-js
 ---
+
 Sometimes components are too high-level, and you need to get at a specific DOM element, either for `scrollTo` or `focus`, in these situations Ember provides a lower-level primitive called an element-modifier. To get started with element modifiers you can check out existing modifiers at [EmberObserver](https://emberobserver.com/categories/modifiers) or create your own using the `ember-modifier` [library](https://github.com/ember-modifier/ember-modifier).
 
 ## Some Examples
 
-```hbs
+```handlebars
 <form {{autofocus}}>
   <input />
 </form>
@@ -19,7 +20,7 @@ Sometimes components are too high-level, and you need to get at a specific DOM e
 
 Which will focus the first non-disabled input that it finds (from [ember-autofocus-modifier](https://github.com/qonto/ember-autofocus-modifier)).
 
-```hbs
+```handlebars
 <div {{scroll-to}}>
   Some content here
 </div>
@@ -29,18 +30,18 @@ Which will scroll to the element once it's in the DOM, and is super easy to impl
 
 ```js
 // /app/modifiers/scroll-to.js
-import { modifier } from 'ember-modifier';
+import { modifier } from "ember-modifier";
 
 export default modifier((element) => {
   element.scrollIntoView({
-    behavior: 'smooth'
+    behavior: "smooth",
   });
 });
 ```
 
 There is also the `ref` modifier from [ember-ref-modifier](https://www.npmjs.com/package/ember-ref-modifier) which gives you access to the element:
 
-```hbs
+```handlebars
 <button {{ref this "button"}} data-name="foo">
   Click me baby, one more time!
 </button>
@@ -50,7 +51,7 @@ There is also the `ref` modifier from [ember-ref-modifier](https://www.npmjs.com
 
 Along with `{{on-click-outside}}` from [ember-click-outside](https://github.com/zeppelin/ember-click-outside).
 
-```hbs
+```handlebars
 <div {{on-click-outside @close}}>
   Your HTML...
 </div>
@@ -60,7 +61,7 @@ Along with `{{on-click-outside}}` from [ember-click-outside](https://github.com/
 
 Mainly because you can do things like:
 
-```hbs
+```handlebars
 {{#if this.isEditorVisible}}
   <div
     class="wysiwig-editor"

@@ -1,18 +1,19 @@
 ---
-title: 'Ember Components At Their Simplest'
+title: "Ember Components At Their Simplest"
 # image: ''
 authors:
   - ilya
-date: '2020-01-06T04:24:40.856Z'
+date: "2020-01-06T04:24:40.856Z"
 tags:
   - ember-js
 ---
+
 [Ember Octane](https://blog.emberjs.com/2019/12/20/octane-is-here.html) gives us template-only components by default, which basically means you have a zero-boilerplate
 way to create a component. This component is 100% declarative and has the same characteristics as a pure function.
 
 An example:
 
-```hbs
+```handlebars
 <div class="alert" aria-live="polite" ...attributes>
 {{#if @message}}
   <div class="alert-content">

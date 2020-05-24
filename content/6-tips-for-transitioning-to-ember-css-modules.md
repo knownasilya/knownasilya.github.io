@@ -4,10 +4,11 @@ title: >
 
 authors:
   - ilya
-date: '2020-01-10T18:44:32.141Z'
+date: "2020-01-10T18:44:32.141Z"
 tags:
   - ember-js
 ---
+
 A few tips as you transition your SASS, LESS, PostCSS or plain CSS to using CSS Modules, and specifically for Ember (not sure what the differences are).
 
 ## Use `local-class` Instead of `class`
@@ -19,13 +20,13 @@ If you pierce component styles (see next section), you should leave your old `cl
 
 CSS Modules don't let you style inside of components you use in your template, so you need to add a class.
 
-```hbs
+```handlebars
 <User local-class="user" />
 ```
 
 Is required to target that component, otherwise you'd have to use `:global`, which should be used sparingly. If you need to expose deeper classes, then it's recommended to add arguments, like `@roleClass` and using the helper:
 
-```hbs
+```handlebars
 <User local-class="user" @roleClass={{local-class "role"}} />
 ```
 
@@ -36,13 +37,13 @@ It's alright to use `:global` if you do lots of component piercing and are migra
 ```js
 module.exports = {
   rules: {
-   'selector-pseudo-class-no-unknown': [
+    "selector-pseudo-class-no-unknown": [
       true,
       {
-        ignorePseudoClasses: ['global']
-      }
+        ignorePseudoClasses: ["global"],
+      },
     ],
-  }
+  },
 };
 ```
 
@@ -69,9 +70,6 @@ This is because the style file doesn't get its own namespace, only the classes (
 
 ## Works Well With TailwindCSS
 
-In the past I've used Tailwind and have wondered about the case where you need to define your own components, it seemed like back to the same old CSS with it's normal limitations. CSS Modules enter stage right, and it's a great combination of using a subset of CSS and for the last 10% you dip into CSS Modules which live right next to your components. 
+In the past I've used Tailwind and have wondered about the case where you need to define your own components, it seemed like back to the same old CSS with it's normal limitations. CSS Modules enter stage right, and it's a great combination of using a subset of CSS and for the last 10% you dip into CSS Modules which live right next to your components.
 
 I've also been working on [SubsetCSS](https://subsetcss.netlify.app) as a side project and it helps with keeping the same subset of CSS that Tailwind uses, so you can keep consistent styles across your whole codebase.
-
-    
-    

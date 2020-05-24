@@ -1,12 +1,31 @@
-'use strict';
+"use strict";
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
-      extensions: ['js', 'css', 'map']
-    }
+      extensions: ["js", "css", "map"],
+    },
+    "ember-prism": {
+      theme: "okaidia",
+
+      components: [
+        "apacheconf",
+        "bash",
+        "css",
+        "handlebars",
+        "http",
+        "javascript",
+        "json",
+        "markup-templating",
+        "ruby",
+        "scss",
+        "graphql",
+      ],
+
+      plugins: ["line-numbers", "normalize-whitespace"],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

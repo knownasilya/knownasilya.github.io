@@ -1,17 +1,18 @@
 ---
-title: 'Ember''s Templating Is Far From Handlebars.js'
+title: "Ember's Templating Is Far From Handlebars.js"
 # image: ''
 authors:
   - ilya
-date: '2020-01-08T21:38:06.721Z'
+date: "2020-01-08T21:38:06.721Z"
 tags:
   - ember-js
 ---
+
 I've heard this so many times on Twitter, that someone doesn't want to try out Ember because of a bad experience with Handlebars.js. Let me tell you something, the handlebars that is in Ember is far divergent from the normal Handlebars.js. Both projects have their uses, but don't judge one by the other.
 
 For instance, take this example code on the Handlebars.js website:
 
-```hbs
+```handlebars
 <ul class="people_list">
   {{#each people}}
     <li>{{this}}</li>
@@ -21,7 +22,7 @@ For instance, take this example code on the Handlebars.js website:
 
 In Ember this would be written as
 
-```hbs
+```handlebars
 <ul class="people_list">
   {{#each this.people as |person|}}
     <li>{{person}}</li>
@@ -34,7 +35,7 @@ We can also see where the original list comes from, in Ember it could be directl
 
 Another example of Handlebars.js syntax:
 
-```hbs
+```handlebars
 {{#with person}}
   {{firstname}} {{lastname}}
 {{/with}}
@@ -44,9 +45,9 @@ In Ember this is impossible, because it becomes ambiguous where the data comes f
 Partials are also not available, just define a template-only component which takes explicit arguments and doesn't have access to `this`.
 Changing context is also not possible in Ember, because the context is explicit with `as |item|` syntax.
 
-```hbs
+```handlebars
 {{#each people}}
-  {{../prefix}} {{firstname}} 
+  {{../prefix}} {{firstname}}
 {{/each}}
 ```
 
