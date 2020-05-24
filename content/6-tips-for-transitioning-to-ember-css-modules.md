@@ -67,6 +67,11 @@ You need to wrap that template in a new class, like `.page`. This is especially 
 You must include selectors like `h1, a, p` inside of a class in your style file, otherwise those will apply to your whole app.
 This is because the style file doesn't get its own namespace, only the classes (and IDs) inside the file are renamed.
 
+## Works Well With TailwindCSS
+
+In the past I've used Tailwind and have wondered about the case where you need to define your own components, it seemed like back to the same old CSS with it's normal limitations. CSS Modules enter stage right, and it's a great combination of using a subset of CSS and for the last 10% you dip into CSS Modules which live right next to your components. 
+
+I've also been working on [SubsetCSS](https://subsetcss.netlify.app) as a side project and it helps with keeping the same subset of CSS that Tailwind uses, so you can keep consistent styles across your whole codebase.
 
     
     
