@@ -19,7 +19,7 @@ blog management system that supported multiple blogs, you could have a route lik
 
 In the past I've tackled this problem with the `modelFor` route method, something like:
 
-```js
+```javascript
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
@@ -44,7 +44,7 @@ Now I can access the blog in my template via `{{@model.blog}}`, and it all works
 With the new `ember-context` addon, we get to change this to something with less boilerplate, and a bit clearer about where the data is coming from.
 With this addon we'd define the following in our `dashboard.blog` template:
 
-```hbs
+```handlebars
 <ContextProvider @key='blog' @value={{@model}}>
   {{outlet}}
 </ContextProvider>
@@ -52,7 +52,7 @@ With this addon we'd define the following in our `dashboard.blog` template:
 
 Now in our `dashboard.blog.post.edit` template we can use this blog model by using a helper: `{{consume-context 'blog'}}`:
 
-```hbs
+```handlebars
 {{#let (consume-context 'blog') as |blog|}}
   {{! work with blog here }}
 {{/let}}
@@ -60,7 +60,7 @@ Now in our `dashboard.blog.post.edit` template we can use this blog model by usi
 
 And if we wanted to access it in a controller or a component, it would be as simple as injecting the value:
 
-```js
+```javascript
 import Component from '@glimmer/component';
 import { inject as context } from '@alexlafroscia/ember-context';
 
