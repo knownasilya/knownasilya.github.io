@@ -3,7 +3,7 @@ title: >
   Sharing A Parent Model Across Route Boundaries
 authors:
   - ilya
-date: '2020-09-15T21:04:38.688Z'
+date: '2020-09-15T21:05:29.441Z'
 tags: 
 ---
 Just last week [Alex LaFroscia](https://mobile.twitter.com/alexlafroscia) released a new addon called [Ember Context](https://github.com/alexlafroscia/ember-context) and I wanted to share some patterns that I've used in the past that this addon changes. 
@@ -67,5 +67,5 @@ export default class PostEditor extends Component {
 }
 ```
 
-This gets even more powerful when you create a custom class and use `@tracked` and `@action` which can be consumed at the top level, but nested routes could also affect the state of that class. There you have it! Have you found similar patterns that ember-context improves? Let me know on Twitter.   
+This gets even more powerful when you create a custom class and use `@tracked` and `@action` which can be consumed at the top level, but nested routes could also affect the state of that class. There you have it! Have you found similar patterns that ember-context improves? Let me know on Twitter.   bl
     
