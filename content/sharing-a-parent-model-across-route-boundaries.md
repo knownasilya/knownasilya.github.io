@@ -3,12 +3,12 @@ title: >
   Sharing A Parent Model Across Route Boundaries
 authors:
   - ilya
-date: '2020-09-15T21:05:29.441Z'
+date: '2020-09-19T15:03:15.805Z'
 tags: 
 ---
 Just last week [Alex LaFroscia](https://mobile.twitter.com/alexlafroscia) released a new addon called [Ember Context](https://github.com/alexlafroscia/ember-context) and I wanted to share some patterns that I've used in the past that this addon changes. 
 
-## The Problemdd
+## The Problem
 
 Sometimes you have a UI where at a certain level you have multiple nested routes and they deal with one parent item. For example if you had a
 blog management system that supported multiple blogs, you could have a route like `dashboard.blog.post.edit` and the `Blog` model is found at the `dashboard.blog` route. So at this point you want to use that same blog model in the other routes. Historically there has never been a great way to do this, you might think put it on a service, but then you have to register and cleanup that service since services are global. Along with that inconvenience it's also not clear where the service gets its data, it seems a bit magic.
