@@ -3,7 +3,7 @@ title: >
   Sharing A Parent Model Across Route Boundaries
 authors:
   - ilya
-date: '2020-09-19T15:09:09.023Z'
+date: '2020-09-19T15:09:17.172Z'
 tags: 
 ---
 Just last week [Alex LaFroscia](https://mobile.twitter.com/alexlafroscia) released a new addon called [Ember Context](https://github.com/alexlafroscia/ember-context) and I wanted to share some patterns that I've used in the past that this addon changes. 
@@ -50,7 +50,7 @@ With this addon we'd define the following in our `dashboard.blog` template:
 
 Now in our `dashboard.blog.post.edit` template we can use this blog model by using a helper: `{{consume-context 'blog'}}`:
 
-```hbs
+```handlebars
 {{#let (consume-context 'blog') as |blog|}}
   {{! work with blog here }}
 {{/let}}
@@ -67,5 +67,5 @@ export default class PostEditor extends Component {
 }
 ```
 
-This gets even more powerful when you create a custom class and use `@tracked` and `@action` which can be consumed at the top level, but nested routes could also affect the state of that class. There you have it! Have you found similar patterns that ember-context improves? Let me know on Twitter.   bl
+This gets even more powerful when you create a custom class and use `@tracked` and `@action` which can be consumed at the top level, but nested routes could also affect the state of that class. There you have it! Have you found similar patterns that ember-context improves? Let me know on Twitter.   
     
