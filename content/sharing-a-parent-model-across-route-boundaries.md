@@ -3,7 +3,7 @@ title: >
   Sharing A Parent Model Across Route Boundaries
 authors:
   - ilya
-date: '2020-09-19T15:03:15.805Z'
+date: '2020-09-19T15:08:59.392Z'
 tags: 
 ---
 Just last week [Alex LaFroscia](https://mobile.twitter.com/alexlafroscia) released a new addon called [Ember Context](https://github.com/alexlafroscia/ember-context) and I wanted to share some patterns that I've used in the past that this addon changes. 
@@ -42,7 +42,7 @@ Now I can access the blog in my template via `{{@model.blog}}`, and it all works
 With the new `ember-context` addon, we get to change this to something with less boilerplate, and a bit clearer about where the data is coming from.
 With this addon we'd define the following in our `dashboard.blog` template:
 
-```hbs
+```ha
 <ContextProvider @key='blog' @value={{@model}}>
   {{outlet}}
 </ContextProvider>
