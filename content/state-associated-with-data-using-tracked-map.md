@@ -4,7 +4,8 @@ title: >
 authors:
   - ilya
 date: '2020-11-01T20:32:23.035Z'
-tags: 
+tags:
+  - ember-js
 ---
 Historically I've used Ember Data which gives you a model instance which you can set arbitrary values on using the `set` method. That as I've been working with more POJO data (via ember-apollo-client) I started using a pattern which fits nicer with the new Octane paradigm.
 
