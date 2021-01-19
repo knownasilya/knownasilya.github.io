@@ -5,6 +5,7 @@ authors:
   - ilya
 date: '2021-01-19T04:35:36.697Z'
 tags: 
+  - family
 ---
 With so much time at home, and the littles needing all this attention it's hard to break out of routine. Sometimes you just need to break it up and do something different. I'm one that is generally ok with just being at home, but the every day can sometimes catch up and you don't notice.
 
