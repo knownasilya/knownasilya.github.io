@@ -3,10 +3,10 @@ title: >
   Writing From A Barrel
 authors:
   - ilya
-date: '2021-01-19T04:33:22.398Z'
+date: '2021-01-19T04:35:36.697Z'
 tags: 
 ---
-With so much time at home, and the littles needing all this attention it's hard to break out of routine. Sometimes you just need to break it up and do something different. I'm one that is generally ok with just being at home, but the every day can sometimes catch up and you don't notice. 
+With so much time at home, and the littles needing all this attention it's hard to break out of routine. Sometimes you just need to break it up and do something different. I'm one that is generally ok with just being at home, but the every day can sometimes catch up and you don't notice.
 
 Today we got some waffles at our favorite coffee shop, Mundos (like Monday, not world 🌎) which our friends own and operate, we ate them in the car with our two kids. I'm ready to be able to eat at a coffee shop again... From there we did a scenic drive down the bay and visited a lighthouse. It was snowing and we walked on the beach and then did some trails. It was the little guys nap time, so that didn't last too long. 
 
