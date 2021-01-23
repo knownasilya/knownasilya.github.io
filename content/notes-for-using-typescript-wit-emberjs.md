@@ -3,12 +3,11 @@ title: >
   Notes For Using TypeScript With EmberJS
 authors:
   - ilya
-date: '2021-01-23T21:52:01.124Z'
+date: '2021-01-23T21:53:13.936Z'
 tags: 
   - ember
 ---
 I've been using TypeScript for a bit with Ember, and I keep having to look up the same things for new projects, so this post is just those things that I keep looking for when using TypeScript with EmberJS.
-
 
 ## Services
 
