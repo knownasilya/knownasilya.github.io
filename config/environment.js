@@ -37,6 +37,9 @@ module.exports = function(environment) {
       }, {
         label: 'Sponsor Me',
         link: 'https://github.com/sponsors/knownasilya'
+      }, {
+        label: 'Working On Typelog.dev',
+        link: 'https://typelog.dev'
       }]
     },
 
