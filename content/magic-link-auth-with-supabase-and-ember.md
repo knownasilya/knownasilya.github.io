@@ -3,9 +3,9 @@ title: >
   Magic Link Auth with Supabase & Ember
 authors:
   - ilya
-date: '2021-08-31T02:20:00.386Z'
+date: '2021-08-31T02:27:21.259Z'
 tags: 
-image: 
+image: /images/supabase-logo.jpeg
 ---
 I've started working a bit with Supabase, which if you haven't heard is a hosted opensource alternative to Firebase that uses Postgres, which is a pretty nice and battle-tested database. One of my favorite things about Firebase was the easy access to authentication, so that was the first thing I wondered about with Supabase. I want to show how easy it is to get basic magic link auth working in your Ember app.
 
