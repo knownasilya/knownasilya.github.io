@@ -3,7 +3,7 @@ title: >
   Magic Link Auth with Supabase & Ember
 authors:
   - ilya
-date: '2021-09-11T02:13:33.037Z'
+date: '2021-09-11T02:13:48.606Z'
 tags: 
   - ember-js
 
@@ -15,6 +15,5 @@ I'll skip most of the things that are already documented on the Supabase website
 
 ## Register
 
-Hello there
 
     
