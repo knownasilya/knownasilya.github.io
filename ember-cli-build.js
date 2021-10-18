@@ -7,6 +7,18 @@ module.exports = function (defaults) {
     fingerprint: {
       extensions: ['js', 'css', 'map'],
     },
+    'responsive-image': {
+      images: [
+        {
+          include: 'images',
+          quality: 80,
+          widths: [2000, 1000, 600, 300],
+          removeSource: false,
+          justCopy: false,
+          extensions: ['jpg', 'jpeg', 'png', 'gif', 'avif', 'webp'],
+        },
+      ],
+    },
     'ember-prism': {
       theme: 'okaidia',
 
