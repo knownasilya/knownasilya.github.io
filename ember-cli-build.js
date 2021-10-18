@@ -1,30 +1,30 @@
-"use strict";
+'use strict';
 
-const EmberApp = require("ember-cli/lib/broccoli/ember-app");
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
-      extensions: ["js", "css", "map"],
+      extensions: ['js', 'css', 'map'],
     },
-    "ember-prism": {
-      theme: "okaidia",
+    'ember-prism': {
+      theme: 'okaidia',
 
       components: [
-        "apacheconf",
-        "bash",
-        "css",
-        "handlebars",
-        "http",
-        "javascript",
-        "json",
-        "markup-templating",
-        "ruby",
-        "scss",
-        "graphql",
+        'apacheconf',
+        'bash',
+        'css',
+        'handlebars',
+        'http',
+        'javascript',
+        'json',
+        'markup-templating',
+        'ruby',
+        'scss',
+        'graphql',
       ],
 
-      plugins: ["line-numbers", "normalize-whitespace"],
+      plugins: ['line-numbers', 'normalize-whitespace'],
     },
   });
 

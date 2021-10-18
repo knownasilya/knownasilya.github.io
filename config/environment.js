@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'super-blog',
     environment,
@@ -14,8 +14,8 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
@@ -28,19 +28,24 @@ module.exports = function(environment) {
       description: 'Blog by @knownasilya about life and web development.',
       coverImage: '/images/blog-cover.jpg',
 
-      navigation: [{
-        label: 'Home',
-        route: 'index'
-      }, {
-        label: 'Github',
-        link: 'https://github.com/knownasilya'
-      }, {
-        label: 'Sponsor Me',
-        link: 'https://github.com/sponsors/knownasilya'
-      }, {
-        label: 'Working On Typelog.dev',
-        link: 'https://typelog.dev'
-      }]
+      navigation: [
+        {
+          label: 'Home',
+          route: 'index',
+        },
+        {
+          label: 'Github',
+          link: 'https://github.com/knownasilya',
+        },
+        {
+          label: 'Sponsor Me',
+          link: 'https://github.com/sponsors/knownasilya',
+        },
+        {
+          label: 'Working On Typelog.dev',
+          link: 'https://typelog.dev',
+        },
+      ],
     },
 
     'responsive-image': {
@@ -50,8 +55,8 @@ module.exports = function(environment) {
       supportedWidths: [2000, 1000, 600, 300],
       removeSourceDir: false,
       justCopy: false,
-      extensions: ['jpg', 'jpeg', 'png', 'gif']
-    }
+      extensions: ['jpg', 'jpeg', 'png', 'gif'],
+    },
   };
 
   if (environment === 'development') {
