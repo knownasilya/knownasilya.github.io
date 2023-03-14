@@ -78,6 +78,6 @@
     "yarn": "1.22.17"
   },
   "dependencies": {
-    "webpack": "^5.58.2"
+    "webpack": "^5.76.0"
   }
 }
